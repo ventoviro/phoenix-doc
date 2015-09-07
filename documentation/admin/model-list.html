@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="../../media/images/favicon.ico" />
+
+        <title>Using ListModel | Windwalker Joomla RAD</title>
+
+        <!-- Uikit core CSS -->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.15.0/css/uikit.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/rainbow.min.css"/>
+
+        <!-- Custom styles for this template -->
+        <link href="../../media/css/main.css" rel="stylesheet">
+
+        <meta name="description" content="">
+        <meta name="generator" content="The Time Machine">
+
+        <meta property="og:title" content="Using ListModel | Windwalker Joomla RAD">
+        <meta property="og:site_name" content="Phoenix RAD for Windwalker">
+
+        
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="../../media/js/jquery.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/uikit/2.15.0/js/uikit.min.js"></script>
+        <script src="../../media/js/highlight.pack.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.article-content pre code, #compare pre').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+        </script>
+
+            <script src="../../media/js/doc.js"></script>
+    </head>
+    <body class="">
+    <nav id="header" class="uk-navbar uk-navbar-attached">
+        <div class="uk-container uk-container-center">
+
+            <a id="big-logo" class="uk-navbar-brand uk-hidden-small" href="../../">
+                <img class="uk-margin uk-margin-remove" src="../../media/images/logo/phoenix-logo.png" title="Asukademy" alt="Asukademy">
+            </a>
+
+            <a href="#" class="uk-navbar-toggle uk-visible-small" data-uk-toggle="{target:'#mainmenu', cls: 'uk-hidden-small'}"></a>
+
+            <a id="small-logo" class="uk-navbar-brand uk-navbar-center uk-visible-small" href="../../">
+                <img class="uk-margin uk-margin-remove" style="max-width: 95%;" src="../../media/images/logo/phoenix-logo.png" title="Asukademy" alt="Asukademy">
+            </a>
+
+            <ul id="mainmenu" class="uk-navbar-nav uk-float-right uk-hidden-small">
+                <li class="">
+                    <a href="../../about/">
+                        <span class="menu-item-title">About</span>
+                    </a>
+                </li>
+
+                <li class="uk-active">
+                    <a href="../../documentation/basic/getting-started.html">
+                        <span class="menu-item-title">Documentation</span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="https://github.com/ventoviro/phoenix" target="_blank">
+                        <span class="menu-item-title">GitHub</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <section id="banner">
+        <div class="banner-inner">
+                <div class="uk-container uk-container-center banner-inner-title">
+        <h1>Using ListModel</h1>
+    </div>
+        </div>
+    </section>
+
+    <div id="main-body">
+            <div class="uk-container uk-container-center">
+        <div class="uk-grid">
+                <div class="uk-width-medium-1-4 uk-container-center">
+        <ul class="uk-nav uk-nav-side side-menu side-bar" data-uk-nav="">
+        <li class="uk-nav-header">Basic</li>
+
+                    <li class="">
+                <a href="../../documentation/basic/getting-started.html">Getting Started</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/basic/create-component.html">Create Component</a>
+            </li>
+        
+    <li class="uk-nav-divider"></li>
+       <li class="uk-nav-header">Admin</li>
+
+                    <li class="">
+                <a href="../../documentation/admin/controller.html">Controller</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/admin/model.html">Model</a>
+            </li>
+                    <li class="uk-active">
+                <a href="../../documentation/admin/model-list.html">ModelList</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/admin/batch.html">Batch</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/admin/model-admin.html">ModelAdmin</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/admin/formfield.html">FormField</a>
+            </li>
+        
+    <li class="uk-nav-divider"></li>
+       <li class="uk-nav-header">General</li>
+
+                    <li class="">
+                <a href="../../documentation/general/asset.html">Css &amp; JS Management</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/general/config.html">Config</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/general/event-listener.html">Event Listener</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/general/html.html">HTML Builder</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/general/thumb.html">Thumb</a>
+            </li>
+        
+    <li class="uk-nav-divider"></li>
+       <li class="uk-nav-header">Helpers</li>
+
+                    <li class="">
+                <a href="../../documentation/helpers/profiler.html">ProfilerHelper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/helpers/modal.html">ModalHelper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/helpers/jcontent.html">JContentHelper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/helpers/extension.html">ExtensionHelper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/helpers/uri.html">UriHelper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/helpers/curl.html">CurlHelper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/helpers/date.html">DateHelper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/helpers/html.html">HtmlHelper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/helpers/language.html">LanguageHelper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/helpers/xml.html">XmlHelper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/helpers/path.html">PathHelper</a>
+            </li>
+        
+    <li class="uk-nav-divider"></li>
+       <li class="uk-nav-header">Framework Packages</li>
+
+                    <li class="">
+                <a href="../../documentation/framework/data.html">Data</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/framework/datamapper.html">DataMapper</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/framework/compare.html">Compare</a>
+            </li>
+                    <li class="">
+                <a href="../../documentation/framework/middleware.html">Middleware</a>
+            </li>
+        
+    <li class="uk-nav-divider"></li>
+   </ul>    </div>
+
+            <div class="uk-width-medium-3-4 uk-container-center">
+                <article class="article-content">
+                    <h1>Introduction</h1>
+
+<p>In Joomla legacy model, we writing query in <code>getListQuery()</code> and <code>getItems()</code> will help us fetch list from database.</p>
+
+<p>In windwalker, we don't need to write whole <code>getListQuery()</code>, we can write what we actually want to do, and others will auto
+done by model.</p>
+
+<h1>Configure Tables</h1>
+
+<h2>Select &amp; Join</h2>
+
+<p>Writing table config in <code>configureTables()</code>:</p>
+
+<pre><code class="php">protected function configureTables()
+{
+    $queryHelper = $this-&gt;getContainer()-&gt;get('model.sakuras.helper.query', Container::FORCE_NEW);
+
+    $queryHelper-&gt;addTable('sakura', '#__flower_sakuras')
+        -&gt;addTable('category',  '#__categories', 'sakura.catid      = category.id')
+        -&gt;addTable('user',      '#__users',      'sakura.created_by = user.id')
+        -&gt;addTable('viewlevel', '#__viewlevels', 'sakura.access     = viewlevel.id')
+        -&gt;addTable('lang',      '#__languages',  'sakura.language   = lang.lang_code');
+
+    // Merge custom filter fields with auto generated filter fields.
+    $this-&gt;filterFields = array_merge($this-&gt;filterFields, $queryHelper-&gt;getFilterFields());
+}
+</code></pre>
+
+<p>We set all table information into <code>QueryHelper</code> and this object will help us generate queries.
+<code>QueryHelper</code> also generate filter fields by table you set into it.</p>
+
+<h2>The Selected Fields</h2>
+
+<p><code>QueryHelper</code> will auto generate select fields:</p>
+
+<pre><code>`sakura`.`id` AS `id`,
+`sakura`.`id` AS `sakura_id`,
+`sakura`.`asset_id` AS `asset_id`,
+`sakura`.`asset_id` AS `sakura_asset_id`,
+`sakura`.`catid` AS `catid`,
+`sakura`.`catid` AS `sakura_catid`,
+`sakura`.`title` AS `title`,
+`sakura`.`title` AS `sakura_title`,
+`sakura`.`alias` AS `alias`,
+`sakura`.`alias` AS `sakura_alias`,
+`sakura`.`url` AS `url`,
+`sakura`.`url` AS `sakura_url`,
+`sakura`.`introtext` AS `introtext`,
+`sakura`.`introtext` AS `sakura_introtext`,
+`sakura`.`fulltext` AS `fulltext`,
+`sakura`.`fulltext` AS `sakura_fulltext`,
+`sakura`.`images` AS `images`,
+`sakura`.`images` AS `sakura_images`,
+`sakura`.`version` AS `version`,
+`sakura`.`version` AS `sakura_version`,
+`sakura`.`created` AS `created`,
+`sakura`.`created` AS `sakura_created`,
+`sakura`.`created_by` AS `created_by`,
+`sakura`.`created_by` AS `sakura_created_by`,
+`sakura`.`modified` AS `modified`,
+`sakura`.`modified` AS `sakura_modified`,
+`sakura`.`modified_by` AS `modified_by`,
+`sakura`.`modified_by` AS `sakura_modified_by`,
+`sakura`.`ordering` AS `ordering`,
+`sakura`.`ordering` AS `sakura_ordering`,
+`sakura`.`state` AS `state`,
+`sakura`.`state` AS `sakura_state`,
+`sakura`.`publish_up` AS `publish_up`,
+`sakura`.`publish_up` AS `sakura_publish_up`,
+`sakura`.`publish_down` AS `publish_down`,
+`sakura`.`publish_down` AS `sakura_publish_down`,
+`sakura`.`checked_out` AS `checked_out`,
+`sakura`.`checked_out` AS `sakura_checked_out`,
+`sakura`.`checked_out_time` AS `checked_out_time`,
+`sakura`.`checked_out_time` AS `sakura_checked_out_time`,
+`sakura`.`access` AS `access`,
+`sakura`.`access` AS `sakura_access`,
+`sakura`.`language` AS `language`,
+`sakura`.`language` AS `sakura_language`,
+`sakura`.`params` AS `params`,
+`sakura`.`params` AS `sakura_params`,
+`category`.`id` AS `category_id`,
+`category`.`asset_id` AS `category_asset_id`,
+`category`.`parent_id` AS `category_parent_id`,
+`category`.`lft` AS `category_lft`,
+`category`.`rgt` AS `category_rgt`,
+`category`.`level` AS `category_level`,
+`category`.`path` AS `category_path`,
+`category`.`extension` AS `category_extension`,
+`category`.`title` AS `category_title`,
+`category`.`alias` AS `category_alias`,
+`category`.`note` AS `category_note`,
+`category`.`description` AS `category_description`,
+`category`.`published` AS `category_published`,
+`category`.`checked_out` AS `category_checked_out`,
+`category`.`checked_out_time` AS `category_checked_out_time`,
+`category`.`access` AS `category_access`,
+`category`.`params` AS `category_params`,
+`category`.`metadesc` AS `category_metadesc`,
+`category`.`metakey` AS `category_metakey`,
+`category`.`metadata` AS `category_metadata`,
+`category`.`created_user_id` AS `category_created_user_id`,
+`category`.`created_time` AS `category_created_time`,
+`category`.`modified_user_id` AS `category_modified_user_id`,
+`category`.`modified_time` AS `category_modified_time`,
+`category`.`hits` AS `category_hits`,
+`category`.`language` AS `category_language`,
+`category`.`version` AS `category_version`,
+`user`.`id` AS `user_id`,
+`user`.`name` AS `user_name`,
+`user`.`username` AS `user_username`,
+`user`.`email` AS `user_email`,
+`user`.`password` AS `user_password`,
+`user`.`block` AS `user_block`,
+`user`.`sendEmail` AS `user_sendEmail`,
+`user`.`registerDate` AS `user_registerDate`,
+`user`.`lastvisitDate` AS `user_lastvisitDate`,
+`user`.`activation` AS `user_activation`,
+`user`.`params` AS `user_params`,
+`user`.`lastResetTime` AS `user_lastResetTime`,
+`user`.`resetCount` AS `user_resetCount`,
+`user`.`otpKey` AS `user_otpKey`,
+`user`.`otep` AS `user_otep`,
+`viewlevel`.`id` AS `viewlevel_id`,
+`viewlevel`.`title` AS `viewlevel_title`,
+`viewlevel`.`ordering` AS `viewlevel_ordering`,
+`viewlevel`.`rules` AS `viewlevel_rules`,
+`lang`.`lang_id` AS `lang_lang_id`,
+`lang`.`lang_code` AS `lang_lang_code`,
+`lang`.`title` AS `lang_title`,
+`lang`.`title_native` AS `lang_title_native`,
+`lang`.`sef` AS `lang_sef`,
+`lang`.`image` AS `lang_image`,
+`lang`.`description` AS `lang_description`,
+`lang`.`metakey` AS `lang_metakey`,
+`lang`.`metadesc` AS `lang_metadesc`,
+`lang`.`sitename` AS `lang_sitename`,
+`lang`.`published` AS `lang_published`,
+`lang`.`access` AS `lang_access`,
+`lang`.`ordering` AS `lang_ordering`
+</code></pre>
+
+<p>It looks terrible but useful, if you join multiple tables, the field name will not conflict and more semantic,
+we can use <code>$item-&gt;category_title</code> or <code>$item-&gt;user_id</code>, very clear.</p>
+
+<p>If you want to override select fields, just set it in state:</p>
+
+<pre><code class="php">$this-&gt;state-&gt;set('query.select', array('sakura.*', 'category.id AS cid'));
+</code></pre>
+
+<h1>Using Filters</h1>
+
+<h2>Filter Form XML</h2>
+
+<p>Open <code>model/form/sakuras/filter.xml</code>, we can write some filter fields here:</p>
+
+<pre><code class="xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;form&gt;
+    &lt;fields name="search"&gt;
+        &lt;!-- Ignore --&gt;
+    &lt;/fields&gt;
+
+    &lt;!-- Filter --&gt;
+    &lt;fields name="filter"&gt;
+        &lt;!-- Ignore --&gt;
+
+        &lt;field
+            name="sakura.access"
+            type="list"
+            default=""
+            label="Access"
+            onchange="this.form.submit();"
+        &gt;
+            &lt;option&gt;&lt;/option&gt;
+            &lt;option&gt;JALL&lt;/option&gt;
+            &lt;option value="1"&gt;Public&lt;/option&gt;
+            &lt;option value="2"&gt;Register&lt;/option&gt;
+        &lt;/field&gt;
+    &lt;/fields&gt;
+
+    &lt;fields name="list"&gt;
+        &lt;!-- Ignore --&gt;
+    &lt;/fields&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>The <code>name</code> is same as what we want to filter in SQL column (eg: <code>sakura.state</code>), note you will need <code>onchange="this.form.submit();"</code> to submit form.</p>
+
+<p>Back to admin, you'll see filter select appeared:</p>
+
+<p><img src="http://cl.ly/Uk3p/140331-0012.jpg" alt="img" /></p>
+
+<h2>Custom Filter Query</h2>
+
+<p>Sometimes we will need to filter a period, so we can't always use <code>=</code> to filter fields. So we can extend the filter rules.</p>
+
+<p>First, add this field in filter XML:</p>
+
+<pre><code class="xml">&lt;field
+    name="a.date"
+    type="list"
+    default=""
+    onchange="this.form.submit();"
+    class=""
+&gt;
+    &lt;option&gt;&lt;/option&gt;
+    &lt;option&gt;- Choose Time Period -&lt;/option&gt;
+    &lt;option value="year"&gt;In 1 Year&lt;/option&gt;
+    &lt;option value="month"&gt;In 1 Month&lt;/option&gt;
+    &lt;option value="week"&gt;In 1 Week&lt;/option&gt;
+&lt;/field&gt;
+</code></pre>
+
+<p>Write our logic in <code>configureFilters()</code>:</p>
+
+<pre><code class="php">protected function configureFilters($filterHelper)
+{
+    $filterHelper-&gt;setHandler(
+        'sakura.date',
+        function($query, $field, $value)
+        {
+            $now = new DateTime;
+
+            $now-&gt;modify('-1 ' . $value);
+
+            $query-&gt;where($field . ' &gt; ' . $now-&gt;format('Y-m-d'));
+        }
+    );
+}
+</code></pre>
+
+<p>OK, we can filter time period in our ist.</p>
+
+<h1>Search</h1>
+
+<h2>Fulltext Search</h2>
+
+<p>Search function is very similar to filter, open <code>model/form/sakuras/filter.xml</code>, you will see:</p>
+
+<pre><code class="xml">&lt;fields name="search"&gt;
+    &lt;field name="field"
+        type="hidden"
+        default="*"
+        label="JSEARCH_FILTER_LABEL"
+        labelclass="pull-left"
+        class="input-small"
+        &gt;
+        &lt;option value="*"&gt;JALL&lt;/option&gt;
+        &lt;option value="sakura.title"&gt;JGLOBAL_TITLE&lt;/option&gt;
+        &lt;option value="category.title"&gt;JCATEGORY&lt;/option&gt;
+    &lt;/field&gt;
+
+    &lt;field
+        name="index"
+        type="text"
+        label="JSEARCH_FILTER_LABEL"
+        hint="JSEARCH_FILTER"
+        /&gt;
+&lt;/fields&gt;
+</code></pre>
+
+<p>The <code>name="field"</code> field is for setting our search fields, every option means one field, let us add a new field:</p>
+
+<pre><code class="xml">&lt;field name="field"
+    type="hidden"
+    default="*"
+    label="JSEARCH_FILTER_LABEL"
+    labelclass="pull-left"
+    class="input-small"
+    &gt;
+    &lt;option value="*"&gt;JALL&lt;/option&gt;
+    &lt;option value="sakura.title"&gt;JGLOBAL_TITLE&lt;/option&gt;
+    &lt;option value="category.title"&gt;JCATEGORY&lt;/option&gt;
+
+    &lt;option value="lang.title"&gt;Language&lt;/option&gt;
+&lt;/field&gt;
+</code></pre>
+
+<p>OK, we search english, the language title can be searched:</p>
+
+<p><img src="http://cl.ly/UjEb/140331-0014.jpg" alt="img" /></p>
+
+<h1>Single Field Search</h1>
+
+<p>Change <code>field</code> field type to <code>list</code>, then you will able to choose field to search single column.</p>
+
+<pre><code class="xml">&lt;field name="field"
+    type="list"
+    default="*"
+    label="JSEARCH_FILTER_LABEL"
+    labelclass="pull-left"
+    class="input-small"
+    &gt;
+    &lt;option value="*"&gt;JALL&lt;/option&gt;
+    &lt;option value="sakura.title"&gt;JGLOBAL_TITLE&lt;/option&gt;
+    &lt;option value="category.title"&gt;JCATEGORY&lt;/option&gt;
+
+    &lt;option value="lang.title"&gt;Language&lt;/option&gt;
+&lt;/field&gt;
+</code></pre>
+
+<p><img src="https://cloud.githubusercontent.com/assets/1639206/2565963/c62520b2-b8bc-11e3-96ae-0087bb376abc.png" alt="joomla323b_-_administration_-_sakura_list" /></p>
+
+<h1>Multiple Search</h1>
+
+<p>Add a fieldset <code>multisearch</code>.</p>
+
+<pre><code class="xml">&lt;fields name="search"&gt;
+    &lt;field name="field"
+        type="list"
+        default="*"
+        label="JSEARCH_FILTER_LABEL"
+        labelclass="pull-left"
+        class="input-small"
+        &gt;
+        &lt;option value="*"&gt;JALL&lt;/option&gt;
+        &lt;option value="sakura.title"&gt;JGLOBAL_TITLE&lt;/option&gt;
+        &lt;option value="category.title"&gt;JCATEGORY&lt;/option&gt;
+
+        &lt;option value="lang.title"&gt;Language&lt;/option&gt;
+    &lt;/field&gt;
+
+    &lt;field
+        name="index"
+        type="text"
+        label="JSEARCH_FILTER_LABEL"
+        hint="JSEARCH_FILTER"
+        /&gt;
+
+    &lt;!-- For multiple search --&gt;
+    &lt;fieldset name="multisearch"&gt;
+        &lt;field
+            name="sakura.title"
+            type="text"
+            label="Title"
+            hint="JSEARCH_FILTER"
+            /&gt;
+
+        &lt;field
+            name="category.title"
+            type="text"
+            label="Category"
+            hint="JSEARCH_FILTER"
+            /&gt;
+    &lt;/fieldset&gt;
+
+&lt;/fields&gt;
+</code></pre>
+
+<p><img src="https://cloud.githubusercontent.com/assets/1639206/2565802/ae00fb98-b8ba-11e3-9981-a69c203bcc29.jpg" alt="140331-0016" /></p>
+
+<h1>Custom Search Query</h1>
+
+<p>We also use <code>SearchHelper</code> to set handler, same as <code>FilterHelper</code>:</p>
+
+<pre><code class="php">/**
+ * configureSearches
+ *
+ * @param \Windwalker\Model\Filter\SearchHelper $searchHelper
+ *
+ * @return  void
+ */
+protected function configureSearches($searchHelper)
+{
+    $searchHelper-&gt;setHandler(
+        'sakura.title',
+        function ($query, $filed, $value)
+        {
+            // Custom search query...
+        }
+    );
+}
+</code></pre>
+
+                        <hr />
+
+    <p class="uk-text-center">
+        Found a typo? Help us <a target="_blank" href="https://github.com/ventoviro/windwalker-rad-doc/tree/master/.vaseman/entries">improve</a> this document.
+    </p>
+    <blockquote class="uk-text-center">
+        This document is for Windwalker Joomla RAD, if you are finding Windwalker PHP framework, please see: <a target="_blank" href="http://windwalker.io">Windwalker Framework</a>
+    </blockquote>
+                </article>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <footer id="footer">
+        <div class="uk-container uk-container-center uk-text-center">
+
+            <div class="footer-logo">
+                <a href="#" data-uk-smooth-scroll>
+                    <img src="../../media/images/logo/windwalker-logo.png" width="150" alt="Footer LOGO">
+                </a>
+            </div>
+
+            <p class="uk-text-center social-buttons">
+                <a target="_blank" class="uk-icon-button uk-icon-facebook" href="javascript: void(0);"></a>
+
+                <a target="_blank" class="uk-icon-button uk-icon-github" href="https://github.com/ventoviro/windwalker-joomla-rad"></a>
+
+                <a class="uk-icon-button uk-icon-envelope-o" href="mailto:asika32764@gmail.com"></a>
+            </p>
+
+            <p>
+                Copyright &copy; 2015 Windwalker. All Rights Reserved.
+            </p>
+            <p class="back">
+                <a href="#" data-uk-smooth-scroll><span class="uk-icon-chevron-up"></span> Back to Top</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-48372917-6', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    </body>
+</html>

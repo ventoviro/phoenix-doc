@@ -1,0 +1,690 @@
+home: true
+meta:
+    desc: |
+        Windwalker is a RAD framework of Joomla! CMS.
+
+        We provides modern functions and interfaces help developer quickly create extensions. Windwalker contains single action controller(Joomla new MVC), XUL engine, console interface, Dependency Injection, DataMapper and code generator.
+og:
+    image: https://cloud.githubusercontent.com/assets/1639206/5605050/68a7f0fe-9421-11e4-998e-49360409f8df.jpg
+---
+{% extends '_global/html.twig' %}
+
+{% block banner %}
+    <div class="banner-title">
+        <h1>Phoenix RAD</h1>
+        <h2>Rapid Application Development Package <br> for Windwalker Framework</h2>
+    </div>
+{% endblock %}
+
+{% block body %}
+<script>
+    $(document).ready(function() {
+        var compares = $('#compare .article-content');
+
+        compares.each(function(i) {
+            var compare = $(this);
+
+            var pres = compare.find('.compare-block pre');
+
+            var pre0 = $(pres[0]);
+            var pre1 = $(pres[1]);
+
+            console.log(pre0.height(), pre1.height());
+
+            if (pre0.height() > pre1.height())
+            {
+                pre1.css('height', pre0.height());
+            }
+            else
+            {
+                pre0.css('height', pre1.height());
+            }
+        });
+    });
+</script>
+    <section id="compare" class="main-block">
+        <div class="uk-container uk-container-center">
+            <h1 class="block-title">Compare with Joomla Native</h1>
+
+            {# Block Start #}
+            <h2>Extension Generator</h2>
+            <p class="uk-text-center uk-width-medium-1-2  uk-container-center">
+                Windwalker has a powerful extension generator, you can generate components, modules and plugins by default template or customize your templates.
+            </p>
+            <div class="uk-grid article-content" data-uk-grid-match>
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Windwalker</h3>
+                    <pre class="bash">$ php bin/windwalker generator init com_flower sakura.sakuras [--client] [--tmpl]</pre>
+                </div>
+
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Joomla</h3>
+                    <pre class="bash"># None...</pre>
+                </div>
+            </div>
+            {# Block End #}
+
+            {# Block Start #}
+            <h2>Component Entry</h2>
+            <p class="uk-text-center uk-width-medium-1-2  uk-container-center">
+                Simpler component entry than Joomla native.
+                You can override component initialise process in your Component object.
+            </p>
+            <div class="uk-grid article-content" data-uk-grid-match>
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Windwalker</h3>
+                    <pre class="php">
+// No direct access
+defined('_JEXEC') or die;
+
+include_once JPATH_COMPONENT_ADMINISTRATOR . '/src/init.php';
+
+echo with(new FlowerComponent)->execute();
+                    </pre>
+                </div>
+
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Joomla</h3>
+                    <pre class="php">
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
+
+// require helper files
+JLoader::register('FlowerHelper', dirname(__FILE__) . '/helpers/flower.php');
+
+$controller = JControllerLegacy::getInstance('Flower');
+
+$controller->execute(JFactory::getApplication()->input->get('task'));
+
+$controller->redirect();
+                    </pre>
+                </div>
+            </div>
+            {# Block End #}
+
+            {# Block Start #}
+            <h2>Controller</h2>
+            <p class="uk-text-center uk-width-medium-1-2  uk-container-center">
+                Tasks like: display, save, update, reorder and delete etc. They are all has default controllers in Windwalker.
+                You don't need to write them out, just override it if you require a new process.
+            </p>
+            <div class="uk-grid article-content" data-uk-grid-match>
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Windwalker</h3>
+                    <pre class="php">
+// Use default controller
+                    </pre>
+                </div>
+
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Joomla</h3>
+                    <pre class="php">
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
+
+class FlowerControllerflower extends JControllerAdmin
+{
+    public function getModel($name = 'flowers', $prefix = 'FlowerModel')
+    {
+        $model = parent::getModel($name, $prefix, array('ignore_request' => true));
+
+        return $model;
+    }
+}
+                    </pre>
+                </div>
+            </div>
+            {# Block End #}
+
+            {# Block Start #}
+            <h2>View Prepare Data</h2>
+            <p class="uk-text-center uk-width-medium-1-2  uk-container-center">
+                Tired to write getItem(), getPagination() and other methods again and again?
+                Windwalker auto loaded them in View object. You can also override default behavior.
+            </p>
+            <div class="uk-grid article-content" data-uk-grid-match>
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Windwalker</h3>
+                    <pre class="php">
+protected function prepareData()
+{
+    // Use default
+}
+                    </pre>
+                </div>
+
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Joomla</h3>
+                    <pre class="php">
+public function display($tpl = null)
+{
+    $this->state      = $this->get('State');
+    $this->items      = $this->get('Items');
+    $this->pagination = $this->get('Pagination');
+
+    WeblinksHelper::addSubmenu('flowers');
+
+    // Check for errors.
+    if (count($errors = $this->get('Errors')))
+    {
+        JError::raiseError(500, implode("\n", $errors));
+        return false;
+    }
+
+    $this->addToolbar();
+
+    $this->sidebar = JHtmlSidebar::render();
+
+    parent::display($tpl);
+}
+                    </pre>
+                </div>
+            </div>
+            {# Block End #}
+
+            {# Block Start #}
+            <h2>View Toolbar</h2>
+            <p class="uk-text-center uk-width-medium-1-2  uk-container-center">
+                Setting toolbar in Joomla is very bother, Windwalker prepared a set of default buttons.
+                You can just configure them to decide which should show on page. Also, the ACL has auto handled.
+            </p>
+            <div class="uk-grid article-content" data-uk-grid-match>
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Windwalker</h3>
+                    <pre class="php">
+protected function configureToolbar($buttonSet = array(), $canDo = null)
+{
+    // Get default button set.
+    $buttonSet = parent::configureToolbar($buttonSet, $canDo);
+
+    // In debug mode, we remove trash button but use delete button instead.
+    if (JDEBUG)
+    {
+        $buttonSet['trash']['access']  = false;
+        $buttonSet['delete']['access'] = true;
+    }
+
+    return $buttonSet;
+}
+                    </pre>
+                </div>
+
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Joomla</h3>
+                    <pre class="php">
+protected function addToolbar()
+{
+    require_once JPATH_COMPONENT . '/helpers/flower.php';
+
+    $state = $this->get('State');
+    $canDo = JHelperContent::getActions('com_weblinks', 'category', $state->get('filter.category_id'));
+    $user  = JFactory::getUser();
+
+    $bar = JToolBar::getInstance('toolbar');
+
+    JToolbarHelper::title(JText::_('COM_WEBLINKS_MANAGER_WEBLINKS'), 'link weblinks');
+    if (count($user->getAuthorisedCategories('com_weblinks', 'core.create')) > 0)
+    {
+        JToolbarHelper::addNew('weblink.add');
+    }
+    if ($canDo->get('core.edit'))
+    {
+        JToolbarHelper::editList('weblink.edit');
+    }
+    if ($canDo->get('core.edit.state')) {
+
+        JToolbarHelper::publish('weblinks.publish', 'JTOOLBAR_PUBLISH', true);
+        JToolbarHelper::unpublish('weblinks.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+
+        JToolbarHelper::archiveList('weblinks.archive');
+        JToolbarHelper::checkin('weblinks.checkin');
+    }
+    if ($state->get('filter.state') == -2 && $canDo->get('core.delete'))
+    {
+        JToolbarHelper::deleteList('', 'weblinks.delete', 'JTOOLBAR_EMPTY_TRASH');
+    } elseif ($canDo->get('core.edit.state'))
+    {
+        JToolbarHelper::trash('weblinks.trash');
+    }
+    // Add a batch button
+    if ($user->authorise('core.create', 'com_weblinks') && $user->authorise('core.edit', 'com_weblinks') && $user->authorise('core.edit.state', 'com_weblinks'))
+    {
+        JHtml::_('bootstrap.modal', 'collapseModal');
+        $title = JText::_('JTOOLBAR_BATCH');
+
+        // Instantiate a new JLayoutFile instance and render the batch button
+        $layout = new JLayoutFile('joomla.toolbar.batch');
+
+        $dhtml = $layout->render(array('title' => $title));
+        $bar->appendButton('Custom', $dhtml, 'batch');
+    }
+    if ($user->authorise('core.admin', 'com_weblinks'))
+    {
+        JToolbarHelper::preferences('com_weblinks');
+    }
+
+    JToolbarHelper::help('JHELP_COMPONENTS_WEBLINKS_LINKS');
+}
+                    </pre>
+                </div>
+            </div>
+            {# Block End #}
+
+            {# Block Start #}
+            <h2>Filter and Batch Configuration</h2>
+            <p class="uk-text-center uk-width-medium-1-2  uk-container-center">
+                Windwalekr Grid system is very smart, you can configure search, filter and batch in XML files.
+                Save you from the query building hell.
+            </p>
+            <div class="uk-grid article-content" data-uk-grid-match>
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Windwalker</h3>
+                    <pre class="xml">
+{%  set xml = '<form>
+    <!-- Batch -->
+    <fields name="batch">
+        <field name="access"
+                type="accesslevel"
+                label="JLIB_HTML_BATCH_ACCESS_LABEL"
+                description="JLIB_HTML_BATCH_ACCESS_LABEL_DESC"
+                labelclass="control-label"
+                class="input-xlarge inputbox"
+                >
+            <option>JLIB_HTML_BATCH_NOCHANGE</option>
+        </field>
+
+        <field name="language"
+                type="contentlanguage"
+                label="JLIB_HTML_BATCH_LANGUAGE_LABEL"
+                description="JLIB_HTML_BATCH_LANGUAGE_LABEL_DESC"
+                labelclass="control-label"
+                class="input-xlarge inputbox"
+                >
+            <option>JLIB_HTML_BATCH_LANGUAGE_NOCHANGE</option>
+        </field>
+
+        <field name="created_by"
+                type="winduser"
+                label="JAUTHOR"
+                description="JLIB_HTML_BATCH_USER_LABEL_DESC"
+                labelclass="control-label"
+                class="input-xlarge inputbox"
+                >
+            <option>JSELECT</option>
+        </field>
+
+        <field name="catid"
+                type="category"
+                label="JLIB_HTML_BATCH_MENU_LABEL"
+                description=""
+                extension="com_flower"
+                labelclass="control-label"
+                class="input-xlarge inputbox"
+                action="true"
+                >
+            <option>JOPTION_SELECT_CATEGORY</option>
+        </field>
+
+        <field name="task"
+                type="radio"
+                label="JLIB_RULES_ACTION"
+                description=""
+                labelclass="control-label"
+                class="combo btn-group"
+                default="sakuras.batch.move"
+                >
+            <option value="sakuras.batch.move">JLIB_HTML_BATCH_MOVE</option>
+            <option value="sakuras.batch.copy">JLIB_HTML_BATCH_COPY</option>
+        </field>
+    </fields>
+</form>' %}
+{{ xml }}
+                    </pre>
+                </div>
+
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Joomla</h3>
+                    <pre class="php">
+// No, you have to use php to write Batch in controller yourself
+                    </pre>
+                </div>
+            </div>
+            {# Block End #}
+
+            {# Block Start #}
+            <h2>Model List</h2>
+            <p class="uk-text-center uk-width-medium-1-2  uk-container-center">
+                Windwalekr provides a powerful QueryHelper and FilterHelper, you don't need to configure so much terrible
+                things in ModelList.
+            </p>
+            <div class="uk-grid article-content" data-uk-grid-match>
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Windwalker</h3>
+                    <pre class="php">
+class FlowerModelSakuras extends ListModel
+{
+    /**
+     * Some default filter fields will be merged to
+     * the auto-generated fields
+     */
+	protected $filterFields = array('sakura.start_date');
+
+	protected function configureTables()
+	{
+		$queryHelper = $this->getContainer()->get('model.sakuras.helper.query', Container::FORCE_NEW);
+
+		$queryHelper->addTable('sakura', '#__flower_sakuras')
+			->addTable('category',  '#__categories', 'sakura.catid = category.id')
+			->addTable('user',      '#__users',      'sakura.created_by = user.id')
+			->addTable('viewlevel', '#__viewlevels', 'sakura.access = viewlevel.id')
+			->addTable('lang',      '#__languages',  'sakura.language = lang.lang_code');
+
+        // Auto generate filter fields, you can also write it manually
+		$this->filterFields = array_merge(
+            $this->filterFields,
+            $queryHelper->getFilterFields()
+        );
+	}
+
+	protected function populateState($ordering = 'id', $direction = 'ASC')
+	{
+        // All filter and search will be handled by parent.
+		parent::populateState($ordering, $direction);
+	}
+
+	protected function processFilters(\JDatabaseQuery $query, $filters = array())
+	{
+		if (!isset($filters['sakura.state']) && property_exists($this->getTable(), 'state'))
+		{
+			$query->where($query->quoteName('sakura.state') . ' >= 0');
+		}
+
+		return parent::processFilters($query, $filters);
+	}
+
+    protected function configureFilters($filterHelper)
+	{
+		// Override filter behavior here
+	}
+
+	protected function configureSearches($searchHelper)
+	{
+		// Override search behavior here
+	}
+}
+                    </pre>
+                </div>
+
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Joomla</h3>
+                    <pre class="php">
+class FlowerModelSakuras extends JModelList
+{
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields']))
+		{
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+				'title', 'a.title',
+				'alias', 'a.alias',
+				'checked_out', 'a.checked_out',
+				'checked_out_time', 'a.checked_out_time',
+				'catid', 'a.catid', 'category_title',
+				'state', 'a.state',
+				'access', 'a.access', 'access_level',
+				'created', 'a.created',
+				'created_by', 'a.created_by',
+				'ordering', 'a.ordering',
+				'featured', 'a.featured',
+				'language', 'a.language',
+				'hits', 'a.hits',
+				'publish_up', 'a.publish_up',
+				'publish_down', 'a.publish_down',
+				'url', 'a.url',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
+	protected function populateState($ordering = null, $direction = null)
+	{
+		$search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
+		$this->setState('filter.search', $search);
+
+		$accessId = $this->getUserStateFromRequest($this->context . '.filter.access', 'filter_access', null, 'int');
+		$this->setState('filter.access', $accessId);
+
+		$published = $this->getUserStateFromRequest($this->context . '.filter.state', 'filter_state', '', 'string');
+		$this->setState('filter.state', $published);
+
+		$categoryId = $this->getUserStateFromRequest($this->context . '.filter.category_id', 'filter_category_id', '');
+		$this->setState('filter.category_id', $categoryId);
+
+		$language = $this->getUserStateFromRequest($this->context . '.filter.language', 'filter_language', '');
+		$this->setState('filter.language', $language);
+
+		$tag = $this->getUserStateFromRequest($this->context . '.filter.tag', 'filter_tag', '');
+		$this->setState('filter.tag', $tag);
+
+		$params = JComponentHelper::getParams('com_Sakuras');
+		$this->setState('params', $params);
+
+		parent::populateState('a.title', 'asc');
+	}
+
+	protected function getListQuery()
+	{
+		// Create a new query object.
+		$db = $this->getDbo();
+		$query = $db->getQuery(true);
+		$user = JFactory::getUser();
+
+		$query->select(
+            'a.id, a.title, a.alias, a.checked_out, a.checked_out_time, a.catid,' .
+            'a.hits,' .
+            'a.state, a.access, a.ordering,' .
+            'a.language, a.publish_up, a.publish_down'
+        );
+
+		$query->from($db->quoteName('#__flower_sakuras') . ' AS a');
+
+		$query->select('l.title AS language_title')
+			->join('LEFT', $db->quoteName('#__languages') . ' AS l ON l.lang_code = a.language')
+            ->select('uc.name AS editor')
+			->join('LEFT', '#__users AS uc ON uc.id=a.checked_out')
+            ->select('ag.title AS access_level')
+			->join('LEFT', '#__viewlevels AS ag ON ag.id = a.access')
+            ->select('c.title AS category_title')
+			->join('LEFT', '#__categories AS c ON c.id = a.catid');
+
+		if ($access = $this->getState('filter.access'))
+		{
+			$query->where('a.access = ' . (int) $access);
+		}
+
+		if (!$user->authorise('core.admin'))
+		{
+			$groups = implode(',', $user->getAuthorisedViewLevels());
+			$query->where('a.access IN (' . $groups . ')');
+		}
+
+		$published = $this->getState('filter.state');
+
+		if (is_numeric($published))
+		{
+			$query->where('a.state = ' . (int) $published);
+		}
+		elseif ($published === '')
+		{
+			$query->where('(a.state IN (0, 1))');
+		}
+
+		$categoryId = $this->getState('filter.category_id');
+
+		if (is_numeric($categoryId))
+		{
+			$query->where('a.catid = ' . (int) $categoryId);
+		}
+
+		$search = $this->getState('filter.search');
+
+		if (!empty($search))
+		{
+			if (stripos($search, 'id:') === 0)
+			{
+				$query->where('a.id = ' . (int) substr($search, 3));
+			}
+			else
+			{
+				$search = $db->quote('%' . $db->escape($search, true) . '%');
+				$query->where('(a.title LIKE ' . $search . ' OR a.alias LIKE ' . $search . ')');
+			}
+		}
+
+		if ($language = $this->getState('filter.language'))
+		{
+			$query->where('a.language = ' . $db->quote($language));
+		}
+
+		$orderCol = $this->state->get('list.ordering');
+		$orderDirn = $this->state->get('list.direction');
+
+		if ($orderCol == 'a.ordering' || $orderCol == 'category_title')
+		{
+			$orderCol = 'c.title ' . $orderDirn . ', a.ordering';
+		}
+
+		$query->order($db->escape($orderCol . ' ' . $orderDirn));
+
+		return $query;
+	}
+}
+
+                    </pre>
+                </div>
+            </div>
+            {# Block End #}
+
+
+
+
+<!--
+            {# Block Start #}
+            <h2></h2>
+            <div class="uk-grid article-content" data-uk-grid-match>
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Windwalker</h3>
+                    <pre class="php">
+                    </pre>
+                </div>
+
+                <div class="uk-width-medium-1-2 compare-block">
+                    <h3>Joomla</h3>
+                    <pre class="php">
+                    </pre>
+                </div>
+            </div>
+            {# Block End #}
+-->
+        </div>
+    </section>
+
+
+    <!--
+    <section id="features" class="main-block">
+        <div class="uk-container uk-container-center">
+            <h1 class="block-title">Features</h1>
+
+            {# ROW 1 #}
+            <div class="uk-grid" data-uk-grid-match>
+                <div class="uk-width-medium-1-3 feature-block">
+                    <img class="uk-border-rounded" src="{{ uri.media }}images/features/lightweight.jpg" alt="" />
+                    <h2>Lightweight and Elegant</h2>
+                    <p>
+                        Windwalker is very fast -- we use many design patterns like lazy loading and caching to make sure we reach high performance.
+                    </p>
+                </div>
+
+                <div class="uk-width-medium-1-3 feature-block">
+                    <img class="uk-border-rounded" src="{{ uri.media }}images/features/powerful.jpg" alt="" />
+                    <h2>Easy But Powerful</h2>
+                    <p>
+                        We know that learning a new framework is very hard and takes a long time,
+                        so Windwalker's interface is very simple and semantic, and will not cause developers pain.
+                    </p>
+                </div>
+
+                <div class="uk-width-medium-1-3 feature-block">
+                    <img class="uk-border-rounded" src="{{ uri.media }}images/features/convention.jpg" alt="" />
+                    <h2>Convention over Config</h2>
+                    <p>
+                        Windwalker tries to reduce configuration work. It uses minimal config to extend the whole system.
+                        But you can still override every part of Windwalker to customize your application.
+                    </p>
+                </div>
+            </div>
+
+            {# ROW 2 #}
+            <div class="uk-grid" data-uk-grid-match>
+                <div class="uk-width-medium-1-3 feature-block">
+                    <img class="uk-border-rounded" src="{{ uri.media }}images/features/decoupled.jpg" alt="" />
+                    <h2>Fully Decoupled</h2>
+                    <p>
+                        Windwalker packages are very independent. We are trying to ensure every package does not depend
+                        on too many other packages. You can easily override Windwalker's behavior without worrying about dependencies.
+                    </p>
+                </div>
+
+                <div class="uk-width-medium-1-3 feature-block">
+                    <img class="uk-border-rounded" src="{{ uri.media }}images/features/extendable.jpg" alt="" />
+                    <h2>Extendable</h2>
+                    <p>
+                        The Windwalker package system (like Symfony bundles) helps us create complex applications for the enterprise.
+                        You can also create your package as an extension to let other developers install it.
+                    </p>
+                </div>
+
+                <div class="uk-width-medium-1-3 feature-block">
+                    <img class="uk-border-rounded" src="{{ uri.media }}images/features/hhvm.jpg" alt="" />
+                    <h2>HHVM Ready</h2>
+                    <p>
+                        After hard work, Windwalker supports HHVM server and passes all tests.
+                        You can run Windwalker in HHVM server and start your programming.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <p class="uk-text-center">
+            <a style="margin-top: 30px;" class="download-button uk-button uk-button-large uk-button-primary"
+                    href="{{ uri.base }}about/features.html">
+                See All Features
+            </a>
+        </p>
+    </section>
+    -->
+
+    <section id="start" class="main-block">
+        <div class="uk-container uk-container-center">
+            <div class="uk-grid" data-uk-grid-match>
+                <div class="uk-width-medium-1-1 article-content">
+                    <h1 class="page-title">Quick Start</h1>
+                    <pre class="home-start-code"><code class="bash" style="font-size: 20px;">$ php composer.phar create-project windwalker/joomla-rad libraries/windwalker 2.*</code></pre>
+                    <p class="uk-text-center">
+                        <a style="margin-top: 50px; width: 400px" class="download-button uk-button uk-button-hero uk-button-primary"
+                                href="{{ uri.base }}documentation/basic/getting-started.html">
+                            Documentation
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <blockquote class="uk-text-center">
+        This document is for Windwalker Joomla RAD, if you are finding Windwalker PHP framework, please see: <a target="_blank" href="http://windwalker.io">Windwalker Framework</a>
+    </blockquote>
+
+{% endblock body %}

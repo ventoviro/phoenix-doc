@@ -1,0 +1,22 @@
+{% extends 'default-page.twig' %}
+
+{% block script %}
+    <script src="{{ uri.media }}js/doc.js"></script>
+{% endblock %}
+
+{% block submenu %}
+    <div class="uk-width-medium-1-4 uk-container-center">
+        {% include 'sub-menu.twig' with {'menu': 'documentation'} %}
+    </div>
+{% endblock %}
+
+{% block article_footer %}
+    <hr />
+
+    <p class="uk-text-center">
+        Found a typo? Help us <a target="_blank" href="https://github.com/ventoviro/windwalker-rad-doc/tree/master/.vaseman/entries">improve</a> this document.
+    </p>
+    <blockquote class="uk-text-center">
+        This document is for Windwalker Joomla RAD, if you are finding Windwalker PHP framework, please see: <a target="_blank" href="http://windwalker.io">Windwalker Framework</a>
+    </blockquote>
+{% endblock %}
