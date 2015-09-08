@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="../../media/images/favicon.ico" />
 
-        <title>Batch | Windwalker Joomla RAD</title>
+        <title>Core Concept | Windwalker Joomla RAD</title>
 
         <!-- Uikit core CSS -->
         <link href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.15.0/css/uikit.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="generator" content="The Time Machine">
 
-        <meta property="og:title" content="Batch | Windwalker Joomla RAD">
+        <meta property="og:title" content="Core Concept | Windwalker Joomla RAD">
         <meta property="og:site_name" content="Phoenix RAD for Windwalker">
 
         
@@ -77,7 +77,7 @@
     <section id="banner">
         <div class="banner-inner">
                 <div class="uk-container uk-container-center banner-inner-title">
-        <h1>Batch</h1>
+        <h1>Core Concept</h1>
     </div>
         </div>
     </section>
@@ -92,7 +92,7 @@
                     <li class="">
                 <a href="../../documentation/basic/getting-started.html">Getting Started</a>
             </li>
-                    <li class="">
+                    <li class="uk-active">
                 <a href="../../documentation/basic/core.html">Core Concept</a>
             </li>
                     <li class="">
@@ -111,7 +111,7 @@
                     <li class="">
                 <a href="../../documentation/admin/model-list.html">ModelList</a>
             </li>
-                    <li class="uk-active">
+                    <li class="">
                 <a href="../../documentation/admin/batch.html">Batch</a>
             </li>
                     <li class="">
@@ -198,123 +198,158 @@
 
             <div class="uk-width-medium-3-4 uk-container-center">
                 <article class="article-content">
-                    <h1>Batch</h1>
+                    <h1>MVC Groups</h1>
 
-<p>Batch is an important function help us process multiple items. However, Joomla has only support <code>Access</code>, <code>Language</code>, <code>Category</code>
- and <code>User</code> these few fields. This is <code>com_content</code> batch box below.</p>
+<p>Every database table in phoenix will be separated to two MVC groups. One is singular item and another is plural list.
+Every MVC group has it's own Model/View/Controller. For example, a table named: <code>sakuras</code>, we will use <code>Sakura</code> Controller
+to modify single item record, and a <code>Sakuras</code> Controller to handle multiple items operation like <code>filter</code>, <code>ordering</code> or <code>batch update</code>.</p>
 
-<p><img src="https://cloud.githubusercontent.com/assets/1639206/2601602/7ebc23c6-bb12-11e3-8513-86f088c01907.png" alt="batch" /></p>
+<h1>Definition</h1>
 
-<p>In Joomla, the <code>JModelAdmin</code> will approach these batch, but it's hard to add new fields to batch.
- So in Windwalker, we use <code>Controller\Batch\MoveController</code> and <code>Controller\Batch\CopyController</code> to approach it.
- And we can writting xml file to set batch fields.</p>
+<h2>Item</h2>
 
-<h1>Add New Batch Field</h1>
+<p>A Singular MVC group, used to handle CRUD of single record, shows the edit page.</p>
 
-<p>By the default, Windwalker provide us some basic batch fields:</p>
+<h2>List</h2>
 
-<p><img src="https://cloud.githubusercontent.com/assets/1639206/2601643/55af147e-bb13-11e3-8a58-b4902ddf1074.png" alt="flower batch" /></p>
+<p>A plural MVC group, used to handle multiple items filter, ordering, batch update and copy etc. Shows a grid page or item list.</p>
 
-<p>Then we add a <code>state</code> field to let user batch change published state.</p>
+<h2>Subsystem</h2>
 
-<p>Open <code>model/form/sakuras/batch.xml</code>, you will see this code:</p>
+<p>Combine singular and plural two MVC groups, they are both maintains same database table.</p>
 
-<pre><code class="xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;form&gt;
-    &lt;!-- Batch --&gt;
-    &lt;fields name="batch"&gt;
-        &lt;field name="access"
-            type="accesslevel"
-            label="JLIB_HTML_BATCH_ACCESS_LABEL"
-            description="JLIB_HTML_BATCH_ACCESS_LABEL_DESC"
-            labelclass="control-label"
-            class="input-xlarge inputbox"
-            &gt;
-            &lt;option&gt;JLIB_HTML_BATCH_NOCHANGE&lt;/option&gt;
-        &lt;/field&gt;
+<h1>CRUD</h1>
 
-        &lt;field name="language"
-            type="contentlanguage"
-            label="JLIB_HTML_BATCH_LANGUAGE_LABEL"
-            description="JLIB_HTML_BATCH_LANGUAGE_LABEL_DESC"
-            labelclass="control-label"
-            class="input-xlarge inputbox"
-            &gt;
-            &lt;option&gt;JLIB_HTML_BATCH_LANGUAGE_NOCHANGE&lt;/option&gt;
-        &lt;/field&gt;
+<p>CRUD means <code>Create</code> / <code>Read</code> / <code>Update</code> and <code>Delete</code> to one item record.</p>
 
-        &lt;field name="created_by"
-            type="winduser"
-            label="JAUTHOR"
-            description="JLIB_HTML_BATCH_USER_LABEL_DESC"
-            labelclass="control-label"
-            class="input-xlarge inputbox"
-            &gt;
-            &lt;option&gt;JSELECT&lt;/option&gt;
-        &lt;/field&gt;
+<p>Phoenix use <code>save</code> to handle <code>create</code> and <code>update</code>. Se you will see <code>CrudModel</code> has only <code>save()</code> method instead <code>create()</code> and <code>update()</code>.</p>
 
-        &lt;field name="catid"
-            type="category"
-            label="JLIB_HTML_BATCH_MENU_LABEL"
-            description=""
-            extension="com_flower"
-            labelclass="control-label"
-            class="input-xlarge inputbox"
-            action="true"
-            &gt;
-            &lt;option&gt;JOPTION_SELECT_CATEGORY&lt;/option&gt;
-        &lt;/field&gt;
+<p>The save() method will determine that if data has primary key, it will use update process, if data has no primary key, then model will use create process.</p>
 
-        &lt;field name="task"
-            type="radio"
-            label="JLIB_RULES_ACTION"
-            description=""
-            labelclass="control-label"
-            class="combo btn-group"
-            default="sakuras.batch.move"
-            &gt;
-            &lt;option value="sakuras.batch.move"&gt;JLIB_HTML_BATCH_MOVE&lt;/option&gt;
-            &lt;option value="sakuras.batch.copy"&gt;JLIB_HTML_BATCH_COPY&lt;/option&gt;
-        &lt;/field&gt;
-    &lt;/fields&gt;
-&lt;/form&gt;
-</code></pre>
+<h1>REST</h1>
 
-<p>A <code>&lt;field&gt;</code> is a batch field, if you want to add a <code>state</code> field, please write this code before <code>task</code> field:</p>
+<p>Default RESTful methods has relations to CRUD operation:</p>
 
-<pre><code class="xml">&lt;field name="state"
-    type="list"
-    label="State"
-    description="Change State"
-    labelclass="control-label"
-    class="input-xlarge inputbox"
-&gt;
-    &lt;option&gt;JOPTION_SELECT_PUBLISHED&lt;/option&gt;
-    &lt;option value="0"&gt;Unpublished&lt;/option&gt;
-    &lt;option value="1"&gt;Published&lt;/option&gt;
-    &lt;option value="-1"&gt;Trashed&lt;/option&gt;
-&lt;/field&gt;
-</code></pre>
+<table>
+<thead>
+<tr>
+  <th>Method</th>
+  <th>Controller</th>
+  <th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>GET</td>
+  <td>READ</td>
+  <td></td>
+</tr>
+<tr>
+  <td>POST</td>
+  <td>CREATE</td>
+  <td></td>
+</tr>
+<tr>
+  <td>PUT</td>
+  <td>UPDATE</td>
+  <td>full fields</td>
+</tr>
+<tr>
+  <td>PATCH</td>
+  <td>UPDATE</td>
+  <td>partial fields</td>
+</tr>
+<tr>
+  <td>DELTE</td>
+  <td>Delete</td>
+  <td></td>
+</tr>
+</tbody>
+</table>
 
-<p>Go to Joomla admin, choose all items and click <code>Batch</code> button, note there is many published items now.</p>
+<h2>Method Controller Mapping</h2>
 
-<p><img src="https://cloud.githubusercontent.com/assets/1639206/2601703/79b321f2-bb14-11e3-8bf6-47354df516fd.png" alt="batch-img" /></p>
+<p>In Windwalker, we use this mapping to call controller.</p>
 
-<p>Select the <code>Unpublished</code> option and click <code>Process</code>. The value of Unpublished is <code>0</code> so every state of items will change to <code>0</code>.</p>
+<table>
+<thead>
+<tr>
+  <th>Method</th>
+  <th>Controller</th>
+  <th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>GET</td>
+  <td>GetController</td>
+  <td></td>
+</tr>
+<tr>
+  <td>POST</td>
+  <td>SaveController</td>
+  <td></td>
+</tr>
+<tr>
+  <td>PUT</td>
+  <td>SaveController</td>
+  <td></td>
+</tr>
+<tr>
+  <td>PATCH</td>
+  <td>SaveController</td>
+  <td></td>
+</tr>
+<tr>
+  <td>DELTE</td>
+  <td>DeleteController</td>
+  <td></td>
+</tr>
+</tbody>
+</table>
 
-<p><img src="https://cloud.githubusercontent.com/assets/1639206/2601713/8e9aedc0-bb14-11e3-8aa0-bfb8514dfe7a.png" alt="batch-img" /></p>
+<p>It's more simpler to write your logic because you can use the exists of primary key to make create or update action.</p>
 
-<p>All state changed to Unpublished.</p>
+<h2>Grid &amp; List Controller</h2>
 
-<p><img src="https://cloud.githubusercontent.com/assets/1639206/2601719/ad5e3eec-bb14-11e3-8cd5-7df336dd3db8.png" alt="batch-img" /></p>
+<p>In phoenix, we use this mapping to map list controller:</p>
 
-<p>We can try <code>Copy</code> function.</p>
-
-<p><img src="https://cloud.githubusercontent.com/assets/1639206/2601726/cc4f9af8-bb14-11e3-95b8-b4ddeb90afa5.png" alt="batch-img" /></p>
-
-<p>Copy successful.</p>
-
-<p><img src="https://cloud.githubusercontent.com/assets/1639206/2601732/dd86870a-bb14-11e3-8eef-a8535df43b2f.png" alt="batch-img" /></p>
+<table>
+<thead>
+<tr>
+  <th>Method</th>
+  <th>Controller</th>
+  <th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>GET</td>
+  <td>GetController</td>
+  <td>Show grid UI</td>
+</tr>
+<tr>
+  <td>POST</td>
+  <td>CopyController</td>
+  <td>Batch copy items</td>
+</tr>
+<tr>
+  <td>PUT</td>
+  <td>UpdateController</td>
+  <td>Batch update items</td>
+</tr>
+<tr>
+  <td>PATCH</td>
+  <td>Controller</td>
+  <td>Filter &amp; search</td>
+</tr>
+<tr>
+  <td>DELTE</td>
+  <td>DeleteController</td>
+  <td>Delete items</td>
+</tr>
+</tbody>
+</table>
 
                         <hr />
 

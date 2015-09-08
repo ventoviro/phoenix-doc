@@ -7,7 +7,8 @@ about:
 documentation:
   Basic:
     basic/getting-started: Getting Started
-    basic/create-component: Create Component
+    basic/core: Core Concept
+    basic/generator: Generator
   Admin:
     admin/controller: Controller
     admin/model: Model

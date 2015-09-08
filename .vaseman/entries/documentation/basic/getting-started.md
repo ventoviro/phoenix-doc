@@ -31,7 +31,7 @@ class Windwalker extends \Windwalker\Core\Windwalker
 	// ...
 ```
 
-## Link assets files:
+### Link assets files:
 
 This command will make a symlink to Phoenix assets in `www/media`
 
@@ -39,15 +39,13 @@ This command will make a symlink to Phoenix assets in `www/media`
 php bin/console phoenix asset sync phoenix
 ```
 
-If you are in Windows, you must open `cmd.exe` or `powershell.exe` with administrator access to run this command. Or you may use hard copy:
+> If you are in Windows, you must open `cmd.exe` or `powershell.exe` with administrator access to run this command. Or you can also use hard copy:
 
-``` bash
-php bin/console asset sync phoenix  --hard
-```
+> `php bin/console asset sync phoenix  --hard`
 
 # Generate A New Package
 
-Please make sure you have correct database configuration, then you can type:
+Please make sure you have correct database configuration, then please type:
 
 ``` bash
 $ php bin/console muse init flower sakura.sakuras -sm
@@ -55,9 +53,9 @@ $ php bin/console muse init flower sakura.sakuras -sm
 
 And you will see this result:
 
-![p-2015-09-07-001](https://cloud.githubusercontent.com/assets/1639206/9719148/59a365c0-55b4-11e5-972a-0f316b0166f6.jpg)
+![img](https://cloud.githubusercontent.com/assets/1639206/9724699/858b4cf2-560e-11e5-9137-956532efdb2e.png)
 
-We must add this package too, register it in `src/Windwalker.php`:
+Package `flower` has been auto generated. We must register this package too, add it in `src/Windwalker.php`:
 
 ``` php
 // src/Windwalker.php
@@ -82,55 +80,38 @@ Then create symlink to assets of this package:
 php bin/console asset sync flower [--hard]
 ```
 
+Direct sub routing to package routing at `etc/routing.yml`:
 
+``` yaml
+# etc/routing.yml
 
+#...
 
-
-# Generate Extensions
-
-Here is some example of how to generate extensions:
-
-## Init Component
-
-Create a component named `com_flower` and with two MVCs `sakura` and `sakuras` in both site and admin.
-
-``` bash
-$ php bin/windwalker generator init com_flower sakura.sakuras
+# Add this route
+flower:
+    pattern: /flower
+    package: flower
 ```
 
-Create a component in site or admin.
+OK, now we can open `http://localhost/{your_project}/www/flower/sakuras` in browser, you will see a sample admin UI.
+
+![img](https://cloud.githubusercontent.com/assets/1639206/9724923/231ea408-5611-11e5-8448-ff29aa059306.png)
+
+Use PHP built-in server:
 
 ``` bash
-$ php bin/windwalker generator init com_flower sakura.sakuras -c admin (site)
+cd {your_project}/www
+php -S localhost:8000
 ```
 
-Create a component and use other sub template `foo`, default is `default`.
+Now you can use `http://localhost:8000/flower/sakuras` to test your application.
 
-``` bash
-$ php bin/windwalker generator init com_flower sakura.sakuras -t foo
-```
+# Debug Mode
 
-## Add two MVC groups
+Add `/dev.php` before your URL, Windwalker will start debug mode and provides a powerful debug console.
 
-Add a singular and a plural MVC group to a exists component.
+> `http://localhost:8000/dev.php/flower.sakuras`
 
-``` bash
-$ php bin/windwalker generator add subsystem com_flower rose.roses
-```
+![img](https://cloud.githubusercontent.com/assets/1639206/9725055/0cc4e1fc-5613-11e5-9f0d-c373d7d68c87.png)
 
-## Module
-
-Create a module named `mod_flower` in front end.
-
-``` bash
-$ php bin/windwalker generator init mod_flower -c site
-```
-
-## Plugin
-
-Create a module named `plg_flower` in 'system' group.
-
-``` bash
-$ php bin/windwalker generator init plg_system_flower
-```
 
