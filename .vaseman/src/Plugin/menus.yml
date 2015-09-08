@@ -10,6 +10,7 @@ documentation:
     basic/core: Core Concept
     basic/generator: Generator
   Admin:
+    admin/guide: Guide
     admin/controller: Controller
     admin/model: Model
     admin/model-list: ModelList

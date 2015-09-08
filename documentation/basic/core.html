@@ -103,6 +103,9 @@
        <li class="uk-nav-header">Admin</li>
 
                     <li class="">
+                <a href="../../documentation/admin/guide.html">Guide</a>
+            </li>
+                    <li class="">
                 <a href="../../documentation/admin/controller.html">Controller</a>
             </li>
                     <li class="">
@@ -208,15 +211,33 @@ to modify single item record, and a <code>Sakuras</code> Controller to handle mu
 
 <h2>Item</h2>
 
-<p>A Singular MVC group, used to handle CRUD of single record, shows the edit page.</p>
+<p>A Singular MVC group, used to handle CRUD of single record, with an edit or single item page.</p>
+
+<h3>Edit Page</h3>
+
+<p><code>Edit</code> page means a page with form and inputs to send data for update an item.
+For example, a blog article page is an <code>Item page</code>, and an article edit page is an <code>Edit page</code>.</p>
 
 <h2>List</h2>
 
-<p>A plural MVC group, used to handle multiple items filter, ordering, batch update and copy etc. Shows a grid page or item list.</p>
+<p>A plural MVC group, used to handle multiple items filter, ordering, batch update and copy etc. With a grid page or item list.</p>
+
+<h3>Grid Page</h3>
+
+<p><code>Grid</code> page means a table to list items and provides a set of button and tools to operate these items.
+For example, the blog articles/category page is a <code>List page</code>, and admin article manager is a <code>Grid page</code>.</p>
 
 <h2>Subsystem</h2>
 
 <p>Combine singular and plural two MVC groups, they are both maintains same database table.</p>
+
+<p>Below is the structure of these terms.</p>
+
+<p><img src="http://i.imgur.com/o8Wlh6i.jpg" alt="Imgur" /></p>
+
+<p>And this is an image of the MVC structure</p>
+
+<p><img src="http://i.imgur.com/iUbloBQ.jpg" alt="Imgur" /></p>
 
 <h1>CRUD</h1>
 

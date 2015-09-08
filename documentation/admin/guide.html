@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="../../media/images/favicon.ico" />
 
-        <title>Data Package | Windwalker Joomla RAD</title>
+        <title>Guide | Windwalker Joomla RAD</title>
 
         <!-- Uikit core CSS -->
         <link href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.15.0/css/uikit.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="generator" content="The Time Machine">
 
-        <meta property="og:title" content="Data Package | Windwalker Joomla RAD">
+        <meta property="og:title" content="Guide | Windwalker Joomla RAD">
         <meta property="og:site_name" content="Phoenix RAD for Windwalker">
 
         
@@ -77,7 +77,7 @@
     <section id="banner">
         <div class="banner-inner">
                 <div class="uk-container uk-container-center banner-inner-title">
-        <h1>Data Package</h1>
+        <h1>Guide</h1>
     </div>
         </div>
     </section>
@@ -102,7 +102,7 @@
     <li class="uk-nav-divider"></li>
        <li class="uk-nav-header">Admin</li>
 
-                    <li class="">
+                    <li class="uk-active">
                 <a href="../../documentation/admin/guide.html">Guide</a>
             </li>
                     <li class="">
@@ -183,7 +183,7 @@
     <li class="uk-nav-divider"></li>
        <li class="uk-nav-header">Framework Packages</li>
 
-                    <li class="uk-active">
+                    <li class="">
                 <a href="../../documentation/framework/data.html">Data</a>
             </li>
                     <li class="">
@@ -201,173 +201,57 @@
 
             <div class="uk-width-medium-3-4 uk-container-center">
                 <article class="article-content">
-                    <h1>Using Data Object</h1>
+                    <h1>Phoenix Admin UI</h1>
 
-<p>The constructor of <code>Data</code> can insert an array or object, it will convert to Data properties.</p>
+<p>If you init a package with <code>default</code> template, you may see this admin UI interface.</p>
 
-<pre><code class="php">use Windwalker\Data\Data;
+<p><img src="https://cloud.githubusercontent.com/assets/1639206/9725055/0cc4e1fc-5613-11e5-9f0d-c373d7d68c87.png" alt="img" /></p>
 
-$array = array(
-    'foo' =&gt; 'bar',
-    'flower' =&gt; 'sakura'
-);
+<blockquote>
+  <p>To remove the stars (<code>**</code>), please open <code>/etc/dev/config.yml</code> and set <code>language.debug</code> to <code>0</code>.</p>
+</blockquote>
 
-$data = new Data($array);
+<h1>Grid Table</h1>
 
-echo $data-&gt;flower; // sakura
-</code></pre>
+<p>Grid table is the main part of List manager page.</p>
 
-<h2>Binding data into it</h2>
+<h2>Change State</h2>
 
-<pre><code class="php">$obj = new \stdClass;
-$obj-&gt;goo = 'yoo';
+<p>You may check some rows and press buttons to operate this items.</p>
 
-$data-&gt;bind($obj);
+<p><img src="http://i.imgur.com/1UxL0ML.jpg" alt="Imgur" /></p>
 
-echo $data-&gt;goo; // yoo
-</code></pre>
+<p>Or click the state button to publish / close / copy or delete an item.</p>
 
-<h2>Get and Set property</h2>
+<p><img src="http://i.imgur.com/UHp4TxQ.jpg" alt="Imgur" /></p>
 
-<p>Data object has magic method to be getter and setter of any property, we don't need to worry about the property exists or not. Non-exists property will return <code>null</code>.</p>
+<h2>Ordering</h2>
 
-<pre><code class="php">echo $data-&gt;foo; // exists
+<p><img src="http://i.imgur.com/hWWHstH.jpg" alt="Imgur" /></p>
 
-echo $data-&gt;yoo; // Not exists, but no error, it will return null.
-</code></pre>
+<h2>Pagination</h2>
 
-<p>We can also using normal getter and setter:</p>
+<p><img src="http://i.imgur.com/v96Pl9B.jpg" alt="Imgur" /></p>
 
-<pre><code class="php">$data-&gt;set('flower', 'rose');
+<h1>Filter Bar</h1>
 
-echo $data-&gt;get('flower');
-</code></pre>
+<p>Filter help us search or filter items.</p>
 
-<h2>Default Value</h2>
+<h2>Search</h2>
 
-<p>If some property not exists, we can get a default value.</p>
+<p>Type something to search keyword.</p>
 
-<pre><code class="php">echo $data-&gt;get('flower', 'Default value');
+<p><img src="http://i.imgur.com/EH4L5ot.jpg" alt="Imgur" /></p>
 
-// OR
+<h2>Filters</h2>
 
-echo $data-&gt;flower ?: 'Default Value';
-</code></pre>
+<p>Click <code>Filters</code> button will expand filter tools. select a state to filter items.</p>
 
-<h2>Array Access</h2>
+<p><img src="http://i.imgur.com/uw6B6SV.jpg" alt="Imgur" /></p>
 
-<p>Using array access to get property:</p>
+<p>You may click <code>X</code> button to clear both search and filters.</p>
 
-<pre><code class="php">// Set
-$data['flower'] = 'Sunflower';
-
-// Get
-echo $data['flower'];
-</code></pre>
-
-<h2>Iterator</h2>
-
-<p><code>Data</code> object can directly use in foreach as iterator:</p>
-
-<pre><code class="php">foreach ($data as $key =&gt; $value)
-{
-    echo $key . ' =&gt; ' . $value;
-}
-</code></pre>
-
-<h2>Null Data</h2>
-
-<p>In PHP, an empty object means exists, so this code will return FALSE:</p>
-
-<pre><code class="php">$data = new Data; // Empty Data object
-
-// IS NULL?
-if (empty($data))
-{
-    echo 'TRUE';
-}
-else
-{
-    echo 'FALSE';
-}
-</code></pre>
-
-<p>So we use <code>isNull()</code> method to detect whether object is empty or not, this is similar to <a href="http://en.wikipedia.org/wiki/Null_Object_pattern">Null Object pattern</a>:</p>
-
-<pre><code class="php">$data = new Data;
-
-// IS NULL?
-if ($data-&gt;isNull())
-{
-    echo 'TRUE';
-}
-else
-{
-    echo 'FALSE';
-}
-</code></pre>
-
-<p>Another simple way is convert it to array, this also work:</p>
-
-<pre><code class="php">// IS NULL?
-if (!(array) $data)
-{
-    echo 'TRUE';
-}
-else
-{
-    echo 'FALSE';
-}
-</code></pre>
-
-<h1>Using DataSet Object</h1>
-
-<p><code>DataSet</code> is a data collection bag for <code>Data</code> object. We can insert array with data in constructor.</p>
-
-<pre><code class="php">use Windwalker\Data\Data;
-use Windwalker\Data\DataSet;
-
-$dataSet = new DataSet(
-    array(
-        new Data(array('id' =&gt; 3, 'title' =&gt; 'Dog')),
-        new Data(array('id' =&gt; 4, 'title' =&gt; 'Cat')),
-    )
-);
-</code></pre>
-
-<h2>Array Access</h2>
-
-<p>We can operate <code>DataSet</code> as an array, it use magic method to get and set data.</p>
-
-<pre><code class="php">echo $dataSet[0]-&gt;title; // Dog
-</code></pre>
-
-<p>Push a new element:</p>
-
-<pre><code class="php">$dataSet[] = new Data(array('id' =&gt; 6, 'title' =&gt; 'Lion'));
-</code></pre>
-
-<h2>Iterator</h2>
-
-<p>We can also using iterator to loop all elements:</p>
-
-<pre><code class="php">foreach ($dataSet as $data)
-{
-    echo $data-&gt;title;
-}
-</code></pre>
-
-<h2>The Batch Getter &amp; Setter</h2>
-
-<p>Get values of <code>foo</code> field from all objects.</p>
-
-<pre><code class="php">$value = $dataset-&gt;foo;
-</code></pre>
-
-<p>Set value to <code>bar</code> field of all object.</p>
-
-<pre><code class="php">$dataset-&gt;bar = 'Fly';
-</code></pre>
+<p><img src="http://i.imgur.com/NwA569R.jpg" alt="Imgur" /></p>
 
                         <hr />
 

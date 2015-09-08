@@ -15,15 +15,33 @@ to modify single item record, and a `Sakuras` Controller to handle multiple item
 
 ## Item
 
-A Singular MVC group, used to handle CRUD of single record, shows the edit page.
+A Singular MVC group, used to handle CRUD of single record, with an edit or single item page. 
+
+### Edit Page
+
+`Edit` page means a page with form and inputs to send data for update an item.
+For example, a blog article page is an `Item page`, and an article edit page is an `Edit page`.
 
 ## List
 
-A plural MVC group, used to handle multiple items filter, ordering, batch update and copy etc. Shows a grid page or item list.
+A plural MVC group, used to handle multiple items filter, ordering, batch update and copy etc. With a grid page or item list.
+
+### Grid Page
+
+`Grid` page means a table to list items and provides a set of button and tools to operate these items.
+For example, the blog articles/category page is a `List page`, and admin article manager is a `Grid page`.
 
 ## Subsystem
 
 Combine singular and plural two MVC groups, they are both maintains same database table.
+
+Below is the structure of these terms.
+
+![Imgur](http://i.imgur.com/o8Wlh6i.jpg)
+
+And this is an image of the MVC structure
+
+![Imgur](http://i.imgur.com/iUbloBQ.jpg)
 
 # CRUD
 
