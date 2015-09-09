@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="../../media/images/favicon.ico" />
 
-        <title>Model | Windwalker Joomla RAD</title>
+        <title>Admin UI Guide | Phoenix RAD for Windwalker</title>
 
         <!-- Uikit core CSS -->
         <link href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.15.0/css/uikit.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="generator" content="The Time Machine">
 
-        <meta property="og:title" content="Model | Windwalker Joomla RAD">
+        <meta property="og:title" content="Admin UI Guide | Phoenix RAD for Windwalker">
         <meta property="og:site_name" content="Phoenix RAD for Windwalker">
 
         
@@ -77,7 +77,7 @@
     <section id="banner">
         <div class="banner-inner">
                 <div class="uk-container uk-container-center banner-inner-title">
-        <h1>Model</h1>
+        <h1>Admin UI Guide</h1>
     </div>
         </div>
     </section>
@@ -100,97 +100,25 @@
             </li>
         
     <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">Admin</li>
+       <li class="uk-nav-header">Tutorial</li>
 
-                    <li class="">
-                <a href="../../documentation/admin/controller.html">Controller</a>
-            </li>
                     <li class="uk-active">
-                <a href="../../documentation/admin/model.html">Model</a>
+                <a href="../../documentation/tut/guide.html">Admin UI Guide</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/model-list.html">ModelList</a>
+                <a href="../../documentation/tut/start.html">Start A Blog</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/batch.html">Batch</a>
+                <a href="../../documentation/tut/grid.html">Prepare Grid View</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/model-admin.html">ModelAdmin</a>
+                <a href="../../documentation/tut/form.html">Form &amp; Edit</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/formfield.html">FormField</a>
-            </li>
-        
-    <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">General</li>
-
-                    <li class="">
-                <a href="../../documentation/general/asset.html">Css &amp; JS Management</a>
+                <a href="../../documentation/tut/filter.html">Filter &amp; Search</a>
             </li>
                     <li class="">
-                <a href="../../documentation/general/config.html">Config</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/event-listener.html">Event Listener</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/html.html">HTML Builder</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/thumb.html">Thumb</a>
-            </li>
-        
-    <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">Helpers</li>
-
-                    <li class="">
-                <a href="../../documentation/helpers/profiler.html">ProfilerHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/modal.html">ModalHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/jcontent.html">JContentHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/extension.html">ExtensionHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/uri.html">UriHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/curl.html">CurlHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/date.html">DateHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/html.html">HtmlHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/language.html">LanguageHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/xml.html">XmlHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/path.html">PathHelper</a>
-            </li>
-        
-    <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">Framework Packages</li>
-
-                    <li class="">
-                <a href="../../documentation/framework/data.html">Data</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/framework/datamapper.html">DataMapper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/framework/compare.html">Compare</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/framework/middleware.html">Middleware</a>
+                <a href="../../documentation/tut/batch.html">Batch</a>
             </li>
         
     <li class="uk-nav-divider"></li>
@@ -198,27 +126,81 @@
 
             <div class="uk-width-medium-3-4 uk-container-center">
                 <article class="article-content">
-                    <h1>Windwalker Models</h1>
+                    <h1>Phoenix Admin UI</h1>
 
-<p>Windwalker has many Model classes and each one do different things.</p>
+<p>If you init a package with <code>default</code> template, you may see this admin UI interface.</p>
 
-<h1>Model</h1>
+<p><img src="https://cloud.githubusercontent.com/assets/1639206/9725055/0cc4e1fc-5613-11e5-9f0d-c373d7d68c87.png" alt="img" /></p>
 
-<p>The basic model, it can fetch Table and provides a Registry interface to setting state, just same as Joomla Model.</p>
+<blockquote>
+  <p>To remove the stars (<code>**</code>), please open <code>/etc/dev/config.yml</code> and set <code>language.debug</code> to <code>0</code>.</p>
+</blockquote>
 
-<h1>ListModel</h1>
+<h1>Grid Page</h1>
 
-<p>Using for list page, you can write a query in it then this model will helper you get list from database and handle
- search, filter, sorting and pagination etc. See <a href="model-list.md">ListModel Section</a></p>
+<p>Grid table is the main part of List manager page.</p>
 
-<h1>ItemModel</h1>
+<h2>Change State</h2>
 
-<p>A simple Model to get one item record.</p>
+<p>You may check some rows and press buttons to operate this items.</p>
 
-<h1>CrudModel &amp; AdminModel</h1>
+<p><img src="http://i.imgur.com/1UxL0ML.jpg" alt="Imgur" /></p>
 
-<p>CrudModel provides some methods help you do CRUD to a table. The AdminModel is extends CrudModel, provides some advanced
- functions when you do CRUD in admin.</p>
+<p>Or click the state button to publish / close / copy or delete an item.</p>
+
+<p><img src="http://i.imgur.com/UHp4TxQ.jpg" alt="Imgur" /></p>
+
+<h2>Ordering</h2>
+
+<p><img src="http://i.imgur.com/hWWHstH.jpg" alt="Imgur" /></p>
+
+<h2>Pagination</h2>
+
+<p><img src="http://i.imgur.com/v96Pl9B.jpg" alt="Imgur" /></p>
+
+<h2>Filter Bar</h2>
+
+<p>Filter help us search or filter items.</p>
+
+<h3>Search</h3>
+
+<p>Type something to search keyword.</p>
+
+<p><img src="http://i.imgur.com/EH4L5ot.jpg" alt="Imgur" /></p>
+
+<h3>Filters</h3>
+
+<p>Click <code>Filters</code> button will expand filter tools. select a state to filter items.</p>
+
+<p><img src="http://i.imgur.com/uw6B6SV.jpg" alt="Imgur" /></p>
+
+<p>You may click <code>X</code> button to clear both search and filters.</p>
+
+<p><img src="http://i.imgur.com/NwA569R.jpg" alt="Imgur" /></p>
+
+<h2>Batch</h2>
+
+<p>Batch is a useful function to update multiple items in one time.</p>
+
+<p><img src="http://i.imgur.com/rbiI9yI.jpg" alt="Imgur" /></p>
+
+<h1>Edit Page</h1>
+
+<p>Click an item title or the <code>Create</code> green button, you will enter the edit page.</p>
+
+<p><img src="http://i.imgur.com/bZZBHpx.jpg" alt="Imgur" /></p>
+
+<p>If you click save without filling any field, the validation will auto work to prevent form submit.</p>
+
+<p><img src="http://i.imgur.com/qOJ7iY0.jpg" alt="Imgur" /></p>
+
+<p>If you enter the title and save, it will show success message.</p>
+
+<p><img src="http://i.imgur.com/cdY5h6r.jpg" alt="Imgur" /></p>
+
+<p>Click <code>Save &amp; Close</code> or <code>Cancel</code>, will back to grid page.</p>
+
+<p><img src="http://i.imgur.com/A3zSr6T.jpg" alt="Imgur" /></p>
 
                         <hr />
 

@@ -16,7 +16,7 @@ Then add `"windwalker/phoenix": "~1.0"` to require block and run `composer updat
 Add Phoenix package object to `Windwalker/Windwalker::loadPackages()`.
 
 ``` php
-// src/Windwalker.php
+// src/Windwalker/Windwalker.php
 
 class Windwalker extends \Windwalker\Core\Windwalker
 {
@@ -58,7 +58,7 @@ And you will see this result:
 Package `flower` has been auto generated. We must register this package too, add it in `src/Windwalker.php`:
 
 ``` php
-// src/Windwalker.php
+// src/Windwalker/Windwalker.php
 
 class Windwalker extends \Windwalker\Core\Windwalker
 {

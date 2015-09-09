@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="../../media/images/favicon.ico" />
 
-        <title>CrudModel &amp; AdminModel | Windwalker Joomla RAD</title>
+        <title>Filter &amp; Search | Phoenix RAD for Windwalker</title>
 
         <!-- Uikit core CSS -->
         <link href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.15.0/css/uikit.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="generator" content="The Time Machine">
 
-        <meta property="og:title" content="CrudModel &amp; AdminModel | Windwalker Joomla RAD">
+        <meta property="og:title" content="Filter &amp; Search | Phoenix RAD for Windwalker">
         <meta property="og:site_name" content="Phoenix RAD for Windwalker">
 
         
@@ -77,7 +77,7 @@
     <section id="banner">
         <div class="banner-inner">
                 <div class="uk-container uk-container-center banner-inner-title">
-        <h1>CrudModel &amp; AdminModel</h1>
+        <h1>Filter &amp; Search</h1>
     </div>
         </div>
     </section>
@@ -100,97 +100,25 @@
             </li>
         
     <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">Admin</li>
+       <li class="uk-nav-header">Tutorial</li>
 
                     <li class="">
-                <a href="../../documentation/admin/controller.html">Controller</a>
+                <a href="../../documentation/tut/guide.html">Admin UI Guide</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/model.html">Model</a>
+                <a href="../../documentation/tut/start.html">Start A Blog</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/model-list.html">ModelList</a>
+                <a href="../../documentation/tut/grid.html">Prepare Grid View</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/batch.html">Batch</a>
+                <a href="../../documentation/tut/form.html">Form &amp; Edit</a>
             </li>
                     <li class="uk-active">
-                <a href="../../documentation/admin/model-admin.html">ModelAdmin</a>
+                <a href="../../documentation/tut/filter.html">Filter &amp; Search</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/formfield.html">FormField</a>
-            </li>
-        
-    <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">General</li>
-
-                    <li class="">
-                <a href="../../documentation/general/asset.html">Css &amp; JS Management</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/config.html">Config</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/event-listener.html">Event Listener</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/html.html">HTML Builder</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/thumb.html">Thumb</a>
-            </li>
-        
-    <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">Helpers</li>
-
-                    <li class="">
-                <a href="../../documentation/helpers/profiler.html">ProfilerHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/modal.html">ModalHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/jcontent.html">JContentHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/extension.html">ExtensionHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/uri.html">UriHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/curl.html">CurlHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/date.html">DateHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/html.html">HtmlHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/language.html">LanguageHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/xml.html">XmlHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/path.html">PathHelper</a>
-            </li>
-        
-    <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">Framework Packages</li>
-
-                    <li class="">
-                <a href="../../documentation/framework/data.html">Data</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/framework/datamapper.html">DataMapper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/framework/compare.html">Compare</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/framework/middleware.html">Middleware</a>
+                <a href="../../documentation/tut/batch.html">Batch</a>
             </li>
         
     <li class="uk-nav-divider"></li>
@@ -198,46 +126,189 @@
 
             <div class="uk-width-medium-3-4 uk-container-center">
                 <article class="article-content">
-                    <h1>CrudModel</h1>
+                    <h1>Add Category Title Search</h1>
 
-<p>CrudModel is a model to do CRUD operation of table item. This class provides <code>getItem()</code>, <code>save()</code> and <code>delete()</code>
- methods to operate a record. Some of our controllers need this model to use.</p>
+<p>In every grid page, there is a search field to search database fields, currently we can only search <code>title</code> and <code>alias</code>.
+Let's add foreign fields search to articles page.</p>
 
-<h1>AdminModel</h1>
+<p>Open <code>Form/articles/FilterDefinition.php</code> and add two new options in search group. It means we told model to search <code>category.title</code> and
+<code>category.alias</code> two more fields.</p>
 
-<p><code>AdminModel</code> extends <code>CrudModel</code>, provides some admin functions like <code>reorder()</code>, <code>checkout &amp; in</code>, <code>sort</code> etc.
- Most of all we use <code>AdminModel</code> as basic model in our component.</p>
+<pre><code class="php">// src/Blog/Admin/Articles/FilterDefinition.php
 
-<h1>Some useful functions in AdminModel</h1>
+// ...
 
-<h2>Reorder Conditions</h2>
-
-<p>Reorder conditions can help you setting ordering group.</p>
-
-<pre><code class="php">// In AdminModel
-protected function getReorderConditions($table)
+class FilterDefinition implements FieldDefinitionInterface
 {
-    $condition[] = 'catid = ' . $table-&gt;catid;
-}
+    public function define(Form $form)
+    {
+        $form-&gt;wrap(null, 'search', function (Form $form)
+        {
+            // Search Field
+            $form-&gt;add('field', new ListField)
+                -&gt;label(Translator::translate('phoenix.grid.search.field.label'))
+                -&gt;set('display', false)
+                -&gt;defaultValue('*')
+                -&gt;addOption(new Option(Translator::translate('phoenix.core.all'), '*'))
+                -&gt;addOption(new Option(Translator::translate('admin.article.field.title'), 'article.title'))
+                -&gt;addOption(new Option(Translator::translate('admin.article.field.alias'), 'article.alias'))
+
+                // Add these two lines
+                -&gt;addOption(new Option('Category Title', 'category.title'))
+                -&gt;addOption(new Option('Category Alias', 'category.alias'));
+
+            // ...
+        });
+
+        // ...
 </code></pre>
 
-<p>Or</p>
+<p>Back to articles page and search some keyword.</p>
 
-<pre><code class="php">protected function populateState()
+<p><img src="http://i.imgur.com/jzxOAiz.jpg" alt="Imgur" /></p>
+
+<p>You can see the category field is able to search. Let's add simple highlight in <code>ArticlesHtmlView</code>.</p>
+
+<pre><code class="php">// src/Blog/Admin/View/Articles/ArticlesHtmlView.php
+
+// ...
+
+class ArticlesHtmlView extends GridView
 {
-    $this-&gt;state-&gt;set('reorder.condition.fields', array('catid = 5'));
-}
+    // ...
+
+    protected function prepareScripts()
+    {
+        // ...
+
+        // Add Highlight script
+        JQueryScript::highlight('.grid-table', trim($this-&gt;data-&gt;state['input.search.content']));
+    }
 </code></pre>
 
-<h2>Order Position of new item</h2>
+<p>This is highlight result.</p>
 
-<p>If we want to st new item ordered as first or last title, just override <code>setOrderPosition</code> and set the default value:</p>
+<p><img src="http://i.imgur.com/dyKjxkr.jpg" alt="Imgur" /></p>
 
-<pre><code class="php">// Set $position = 'first' OR 'last'
-public function setOrderPosition($table, $position = 'first')
+<h1>Add More Filters</h1>
+
+<p>Currently, articles page has only one filter: <code>state</code>, we can add a category filter and a date filter to help us manage articles.</p>
+
+<h2>Add Category Filter</h2>
+
+<pre><code class="php">// src/Blog/Admin/Articles/FilterDefinition.php
+
+// ...
+
+class FilterDefinition implements FieldDefinitionInterface
 {
-    return parent::setOrderPosition($table, $position);
-}
+        // ...
+
+        $form-&gt;wrap(null, 'filter', function(Form $form)
+        {
+            // ...
+
+            // Category
+            $form-&gt;add('category.id', new CategoryListField)
+                -&gt;label('Category')
+                -&gt;addOption(new Option('', ''))
+                -&gt;addOption(new Option('-- Select Category --', ''))
+                -&gt;set('onchange', 'this.form.submit()');
+
+        // ...
+</code></pre>
+
+<p>This is the result that we can filter by category ID.</p>
+
+<p><img src="http://i.imgur.com/R0v5R20.jpg" alt="Imgur" /></p>
+
+<h2>Add Date Filter</h2>
+
+<p>We add <code>Start Date</code> and <code>End Date</code> to filter a time period.</p>
+
+<pre><code class="php">// src/Blog/Admin/Articles/FilterDefinition.php
+
+// ...
+
+class FilterDefinition implements FieldDefinitionInterface
+{
+        // ...
+
+        $form-&gt;wrap(null, 'filter', function(Form $form)
+        {
+            // ...
+
+            // Category
+            $form-&gt;add('category.id', new CategoryListField)
+                -&gt;label('Category')
+                -&gt;addOption(new Option('', ''))
+                -&gt;addOption(new Option('-- Select Category --', ''))
+                -&gt;set('onchange', 'this.form.submit()');
+
+            // Start Date
+            $form-&gt;add('start_date', new CalendarField)
+                -&gt;label('Start Date')
+                -&gt;set('format', 'YYYY-MM-DD')
+                -&gt;set('placeholder', 'Start Date');
+
+            // End Date
+            $form-&gt;add('end_date', new CalendarField)
+                -&gt;label('End Date')
+                -&gt;set('format', 'YYYY-MM-DD')
+                -&gt;set('placeholder', 'End Date');
+
+        // ...
+</code></pre>
+
+<p>The start and end date use <code>&gt;=</code> and <code>&lt;=</code> to filter items, not <code>=</code>, so we must configure it in <code>ArticlesModel</code>.</p>
+
+<pre><code class="php"><br />class ArticlesModel extends ListModel
+{
+    // ...
+
+    // This is an important security setting.
+    // Add these two fields that will able to pass the fields checking.
+    // Otherwise anyone can try your database.
+    protected $allowFields = array(
+        'start_date', 'end_date'
+    );
+
+    // ...
+
+    protected function configureFilters(FilterHelperInterface $filterHelper)
+    {
+        // Override start_date action
+        $filterHelper-&gt;setHandler('start_date', function(Query $query, $field, $value)
+        {
+            if ($value !== null &amp;&amp; $value !== '')
+            {
+                $query-&gt;where('article.created &gt;= ' . $query-&gt;quote($value));
+            }
+        });
+
+        // Override end_date action
+        $filterHelper-&gt;setHandler('end_date', function(Query $query, $field, $value)
+        {
+            if ($value !== null &amp;&amp; $value !== '')
+            {
+                $query-&gt;where('article.created &lt;= ' . $query-&gt;quote($value));
+            }
+        });
+    }
+</code></pre>
+
+<p>OK, you can try to filter the date.</p>
+
+<p><img src="http://i.imgur.com/jLsnier.jpg" alt="Imgur" /></p>
+
+<p>Go to debugger, you will see the SQL is:</p>
+
+<pre><code class="sql">SELECT
+-- ...
+
+WHERE article.created &gt;= '1970-09-10' AND article.created &lt;= '1973-09-09'
+
+-- ...
 </code></pre>
 
                         <hr />

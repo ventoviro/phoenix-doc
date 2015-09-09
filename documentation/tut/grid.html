@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="../../media/images/favicon.ico" />
 
-        <title>Date Helper | Phoenix RAD for Windwalker</title>
+        <title>Prepare Grid View | Phoenix RAD for Windwalker</title>
 
         <!-- Uikit core CSS -->
         <link href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.15.0/css/uikit.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="generator" content="The Time Machine">
 
-        <meta property="og:title" content="Date Helper | Phoenix RAD for Windwalker">
+        <meta property="og:title" content="Prepare Grid View | Phoenix RAD for Windwalker">
         <meta property="og:site_name" content="Phoenix RAD for Windwalker">
 
         
@@ -77,7 +77,7 @@
     <section id="banner">
         <div class="banner-inner">
                 <div class="uk-container uk-container-center banner-inner-title">
-        <h1>Date Helper</h1>
+        <h1>Prepare Grid View</h1>
     </div>
         </div>
     </section>
@@ -108,7 +108,7 @@
                     <li class="">
                 <a href="../../documentation/tut/start.html">Start A Blog</a>
             </li>
-                    <li class="">
+                    <li class="uk-active">
                 <a href="../../documentation/tut/grid.html">Prepare Grid View</a>
             </li>
                     <li class="">
@@ -126,19 +126,185 @@
 
             <div class="uk-width-medium-3-4 uk-container-center">
                 <article class="article-content">
-                    <h1>Using DateHelper</h1>
+                    <h1>Articles List Manager</h1>
 
-<p>Use</p>
+<p>We must add more information to article grid page. Open <code>Model/ArticlesModel.php</code>, add some joined table to article.</p>
 
-<pre><code class="php">$date = \Windwalker\Helper\DateHelper::getDate('now');
+<pre><code class="php">// src/Blog/Admin/Model/ArticlesModel.php
+
+// ...
+
+class ArticlesModel extends ListModel
+{
+    // ...
+
+    protected function configureTables()
+    {
+        $this-&gt;addTable('article', Table::ARTICLES)
+            -&gt;addTable('category', Table::CATEGORIES, 'category.id = article.category_id');
+    }
 </code></pre>
 
-<p>Same as</p>
+<p>After table joined, let's add some data in grid template.</p>
 
-<pre><code class="php">$dta = JFactory::getDate('now', JFactory::getConfig()-&gt;get('offset'));
+<pre><code class="html">&lt;!-- src/Blog/Admin/Templates/articles/articles.blade.php --&gt;
+
+&lt;!-- ... --&gt;
+
+&lt;div class="grid-table table-responsive"&gt;
+    &lt;table class="table table-bordered"&gt;
+        &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;!-- ... --&gt;
+
+            {{-- CATEGORY --}}
+            &lt;th&gt;
+                {!! $grid-&gt;sortTitle('Category', 'article.category_id') !!}
+            &lt;/th&gt;
+
+            {{-- TITLE --}}
+            &lt;th&gt;
+                {!! $grid-&gt;sortTitle('admin.article.field.title', 'article.title') !!}
+            &lt;/th&gt;
+
+            &lt;!-- ... --&gt;
+        &lt;/tr&gt;
+        &lt;/thead&gt;
+
+        &lt;tbody&gt;
+        @foreach ($items as $i =&gt; $item)
+            &lt;!-- ... --&gt;
+
+                {{-- CATEGORY --}}
+                &lt;td&gt;
+                    {{ $item-&gt;category_title }}
+                &lt;/td&gt;
+
+                {{-- TITLE --}}
+                &lt;td&gt;
+                    &lt;a href="{{{ $router-&gt;html('article', array('id' =&gt; $item-&gt;id)) }}}"&gt;
+                        {{ $item-&gt;title }}
+                    &lt;/a&gt;
+                    &lt;br/&gt;
+                    &lt;small class="text-muted"&gt;{{ $item-&gt;alias }}&lt;/small&gt;
+                &lt;/td&gt;
+
+            &lt;!-- ... --&gt;
 </code></pre>
 
-<p>To get the <code>JDate</code> object for local timezone.</p>
+<p>Now Category title has been added to articles view.</p>
+
+<p><img src="http://i.imgur.com/Yeezqqs.jpg" alt="Imgur" /></p>
+
+<h1>Comment Grid</h1>
+
+<p>Also, we do same thing to <code>comments</code>.</p>
+
+<pre><code class="php">// src/Blog/Admin/Model/CommentsModel.php
+
+class CommentsModel extends ListModel
+{
+    // ...
+
+    protected function configureTables()
+    {
+        $this-&gt;addTable('comment', Table::COMMENTS)
+            -&gt;addTable('article', Table::ARTICLES, 'article.id = comment.article_id');
+    }
+
+    // ...
+</code></pre>
+
+<p>Add <code>name</code>, <code>email</code> and <code>article_title</code>, remove some none-necessary fields.</p>
+
+<pre><code class="html">&lt;!-- src/Blog/Admin/Templates/comments/comments.blade.php --&gt;
+
+&lt;!-- ... --&gt;
+
+&lt;table class="table table-bordered"&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+        {{-- CHECKBOX --}}
+        &lt;th&gt;
+            {!! $grid-&gt;checkboxesToggle(array('duration' =&gt; 150)) !!}
+        &lt;/th&gt;
+
+        {{-- STATE --}}
+        &lt;th style="min-width: 90px;"&gt;
+            {!! $grid-&gt;sortTitle('admin.comment.field.state', 'comment.state') !!}
+        &lt;/th&gt;
+
+        {{-- ARTICLE --}}
+        &lt;th&gt;
+            {!! $grid-&gt;sortTitle('Article', 'article.title') !!}
+        &lt;/th&gt;
+
+        {{-- NAME --}}
+        &lt;th&gt;
+            {!! $grid-&gt;sortTitle('Name', 'comment.name') !!}
+        &lt;/th&gt;
+
+        {{-- EMAIL --}}
+        &lt;th&gt;
+            {!! $grid-&gt;sortTitle('Email', 'comment.email') !!}
+        &lt;/th&gt;
+
+        {{-- ORDERING --}}
+        &lt;th width="5%" class="nowrap"&gt;
+            {!! $grid-&gt;sortTitle('admin.comment.field,.ordering', 'comment.ordering') !!} {!! $grid-&gt;saveorderButton() !!}
+        &lt;/th&gt;
+
+        {{-- CREATED --}}
+        &lt;th&gt;
+            {!! $grid-&gt;sortTitle('admin.comment.field.created', 'comment.created') !!}
+        &lt;/th&gt;
+
+        {{-- ID --}}
+        &lt;th&gt;
+            {!! $grid-&gt;sortTitle('admin.comment.field.id', 'comment.id') !!}
+        &lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+
+    &lt;tbody&gt;
+    @foreach ($items as $i =&gt; $item)
+        &lt;?php
+        $grid-&gt;setItem($item, $i);
+        ?&gt;
+        &lt;tr&gt;
+            &lt;!-- ... --&gt;
+
+            {{-- ARTICLE --}}
+            &lt;td&gt;
+                {!! $grid-&gt;foreignLink($item-&gt;article_title, $router-&gt;html('article', array('id' =&gt; $item-&gt;article_id))) !!}
+            &lt;/td&gt;
+
+            {{-- NAME --}}
+            &lt;td&gt;
+                &lt;a href="{{ $router-&gt;html('comment', array('id' =&gt; $item-&gt;id)) }}"&gt;
+                    {{ $item-&gt;name }}
+                &lt;/a&gt;
+            &lt;/td&gt;
+
+            {{-- EMAIL --}}
+            &lt;td&gt;
+                &lt;a href="{{ $router-&gt;html('comment', array('id' =&gt; $item-&gt;id)) }}"&gt;
+                    {{ $item-&gt;email }}
+                &lt;/a&gt;
+            &lt;/td&gt;
+
+            {{-- ORDERING --}}
+            &lt;td&gt;
+                {!! $grid-&gt;orderButton() !!}
+            &lt;/td&gt;
+
+            &lt;!-- ... --&gt;
+    @endforeach
+</code></pre>
+
+<p>The result will be:</p>
+
+<p><img src="http://i.imgur.com/6E5l53f.jpg" alt="Imgur" /></p>
 
                         <hr />
 

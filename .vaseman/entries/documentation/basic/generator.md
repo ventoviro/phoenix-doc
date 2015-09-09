@@ -45,7 +45,7 @@ Commands:
 
 Use `init` command to generate package template.
 
-Usage: `init [<namespace>\]<name> <item>.<list> [-s|--seed] [-m|--migrate] [-t|--tmpl=default]`.
+Usage: `init [<namespace>\\]<name> <item>.<list> [-s|--seed] [-m|--migrate] [-t|--tmpl=default]`.
 
 ## Example
 
@@ -58,19 +58,21 @@ php bin/console muse init Flower sakura.sakuras
 Init a package in `Asuka\` namespace, the package will located at `src/Asuka/Flower`.
 
 ``` bash
-php bin/console muse init Asuka\Flower sakura.sakuras
+php bin/console muse init Asuka\\Flower sakura.sakuras
 ```
+
+> We support normal slash `Asuka/Flower` that will be more convenience.
 
 Init a package than run migration and seeder.
 
 ``` bash
-php bin/console muse init Asuka\Flower sakura.sakuras -sm
+php bin/console muse init Asuka\\Flower sakura.sakuras -sm
 ```
 
 Init a package with another template named: `simple`.
 
 ``` bash
-php bin/console muse init Asuka\Flower sakura.sakuras -t=simple
+php bin/console muse init Asuka\\Flower sakura.sakuras -t=simple
 ```
 
 If you forgot to run migration and seeder, you can use this command to run it after generated:
@@ -87,7 +89,7 @@ this package to Windwalker main application.
 For example, if we create a package named `Flower`, we have to register `Flower\FlowerPackage` class to Windwalker.
 
 ``` php
-// src/Windwalker.php
+// src/Windwalker/Windwalker.php
 
 use Flower\FlowerPackage;
 
@@ -144,7 +146,7 @@ Make sure you have ran the migration and seeder. Open browser and go to `http://
 
 If you want to add two MVC groups with singular and plural, use `add-subsystem` command. All parameters are same as `init`.
 
-Usage: `add-subsystem [<namespace>\]<name> <item>.<list> [-s|--seed] [-m|--migrate] [-t|--tmpl=default]`
+Usage: `add-subsystem [<namespace>\\]<name> <item>.<list> [-s|--seed] [-m|--migrate] [-t|--tmpl=default]`
 
 For example, add `rose.roses`.
 
@@ -160,9 +162,9 @@ Then you will see a new submenu item in admin UI.
 
 Just use `add-item` and `add-list` commands. All parameters are same as `init` and `add-subsystem`.
 
-Add item usage: `add-item [<namespace>\]<name> <item>.<list> [-t|--tmpl=default]`
+Add item usage: `add-item [<namespace>\\]<name> <item>.<list> [-t|--tmpl=default]`
 
-Add list usage: `add-list [<namespace>\]<name> <item>.<list> [-t|--tmpl=default]`
+Add list usage: `add-list [<namespace>\\]<name> <item>.<list> [-t|--tmpl=default]`
 
 > You still must provides both item and list name for this two commands.
 
@@ -181,7 +183,7 @@ php bin/console muse init Vehicle car.cars -t=simple
 
 Use `convert` command to convert a existing package to be template then your team will able to create your own templates.
 
-Usage: `convert [<namespace>\]<name> <item>.<list> [-t|--tmpl=default]`
+Usage: `convert [<namespace>\\]<name> <item>.<list> [-t|--tmpl=default]`
 
 > #### TODO:
 

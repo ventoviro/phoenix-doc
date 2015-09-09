@@ -1,6 +1,6 @@
 about:
   Menu:
-    index: About
+    #index: About
     #features: Features
     #packages: Packages
     cases: Who use Windwalker
@@ -9,34 +9,40 @@ documentation:
     basic/getting-started: Getting Started
     basic/core: Core Concept
     basic/generator: Generator
-  Admin:
-    admin/guide: Guide
-    admin/controller: Controller
-    admin/model: Model
-    admin/model-list: ModelList
-    admin/batch: Batch
-    admin/model-admin: ModelAdmin
-    admin/formfield: FormField
-  General:
-    general/asset: Css & JS Management
-    general/config: Config
-    general/event-listener: Event Listener
-    general/html: HTML Builder
-    general/thumb: Thumb
-  Helpers:
-    helpers/profiler: ProfilerHelper
-    helpers/modal: ModalHelper
-    helpers/jcontent: JContentHelper
-    helpers/extension: ExtensionHelper
-    helpers/uri: UriHelper
-    helpers/curl: CurlHelper
-    helpers/date: DateHelper
-    helpers/html: HtmlHelper
-    helpers/language: LanguageHelper
-    helpers/xml: XmlHelper
-    helpers/path: PathHelper
-  'Framework Packages':
-    framework/data: Data
-    framework/datamapper: DataMapper
-    framework/compare: Compare
-    framework/middleware: Middleware
+  Tutorial:
+    tut/guide: Admin UI Guide
+    tut/start: Start A Blog
+    tut/grid: Prepare Grid View
+    tut/form: Form & Edit
+    tut/filter: Filter & Search
+    tut/batch: Batch
+#  Admin:
+#    admin/controller: Controller
+#    admin/model: Model
+#    admin/model-list: ModelList
+#    admin/batch: Batch
+#    admin/model-admin: ModelAdmin
+#    admin/formfield: FormField
+#  General:
+#    general/asset: Css & JS Management
+#    general/config: Config
+#    general/event-listener: Event Listener
+#    general/html: HTML Builder
+#    general/thumb: Thumb
+#  Helpers:
+#    helpers/profiler: ProfilerHelper
+#    helpers/modal: ModalHelper
+#    helpers/jcontent: JContentHelper
+#    helpers/extension: ExtensionHelper
+#    helpers/uri: UriHelper
+#    helpers/curl: CurlHelper
+#    helpers/date: DateHelper
+#    helpers/html: HtmlHelper
+#    helpers/language: LanguageHelper
+#    helpers/xml: XmlHelper
+#    helpers/path: PathHelper
+#  'Framework Packages':
+#    framework/data: Data
+#    framework/datamapper: DataMapper
+#    framework/compare: Compare
+#    framework/middleware: Middleware

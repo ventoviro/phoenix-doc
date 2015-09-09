@@ -100,100 +100,25 @@
             </li>
         
     <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">Admin</li>
+       <li class="uk-nav-header">Tutorial</li>
 
                     <li class="">
-                <a href="../../documentation/admin/guide.html">Guide</a>
+                <a href="../../documentation/tut/guide.html">Admin UI Guide</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/controller.html">Controller</a>
+                <a href="../../documentation/tut/start.html">Start A Blog</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/model.html">Model</a>
+                <a href="../../documentation/tut/grid.html">Prepare Grid View</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/model-list.html">ModelList</a>
+                <a href="../../documentation/tut/form.html">Form &amp; Edit</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/batch.html">Batch</a>
+                <a href="../../documentation/tut/filter.html">Filter &amp; Search</a>
             </li>
                     <li class="">
-                <a href="../../documentation/admin/model-admin.html">ModelAdmin</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/admin/formfield.html">FormField</a>
-            </li>
-        
-    <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">General</li>
-
-                    <li class="">
-                <a href="../../documentation/general/asset.html">Css &amp; JS Management</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/config.html">Config</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/event-listener.html">Event Listener</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/html.html">HTML Builder</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/general/thumb.html">Thumb</a>
-            </li>
-        
-    <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">Helpers</li>
-
-                    <li class="">
-                <a href="../../documentation/helpers/profiler.html">ProfilerHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/modal.html">ModalHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/jcontent.html">JContentHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/extension.html">ExtensionHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/uri.html">UriHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/curl.html">CurlHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/date.html">DateHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/html.html">HtmlHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/language.html">LanguageHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/xml.html">XmlHelper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/helpers/path.html">PathHelper</a>
-            </li>
-        
-    <li class="uk-nav-divider"></li>
-       <li class="uk-nav-header">Framework Packages</li>
-
-                    <li class="">
-                <a href="../../documentation/framework/data.html">Data</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/framework/datamapper.html">DataMapper</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/framework/compare.html">Compare</a>
-            </li>
-                    <li class="">
-                <a href="../../documentation/framework/middleware.html">Middleware</a>
+                <a href="../../documentation/tut/batch.html">Batch</a>
             </li>
         
     <li class="uk-nav-divider"></li>
@@ -240,7 +165,7 @@ Commands:
 
 <p>Use <code>init</code> command to generate package template.</p>
 
-<p>Usage: <code>init [&lt;namespace&gt;\]&lt;name&gt; &lt;item&gt;.&lt;list&gt; [-s|--seed] [-m|--migrate] [-t|--tmpl=default]</code>.</p>
+<p>Usage: <code>init [&lt;namespace&gt;\\]&lt;name&gt; &lt;item&gt;.&lt;list&gt; [-s|--seed] [-m|--migrate] [-t|--tmpl=default]</code>.</p>
 
 <h2>Example</h2>
 
@@ -251,17 +176,21 @@ Commands:
 
 <p>Init a package in <code>Asuka\</code> namespace, the package will located at <code>src/Asuka/Flower</code>.</p>
 
-<pre><code class="bash">php bin/console muse init Asuka\Flower sakura.sakuras
+<pre><code class="bash">php bin/console muse init Asuka\\Flower sakura.sakuras
 </code></pre>
+
+<blockquote>
+  <p>We support normal slash <code>Asuka/Flower</code> that will be more convenience.</p>
+</blockquote>
 
 <p>Init a package than run migration and seeder.</p>
 
-<pre><code class="bash">php bin/console muse init Asuka\Flower sakura.sakuras -sm
+<pre><code class="bash">php bin/console muse init Asuka\\Flower sakura.sakuras -sm
 </code></pre>
 
 <p>Init a package with another template named: <code>simple</code>.</p>
 
-<pre><code class="bash">php bin/console muse init Asuka\Flower sakura.sakuras -t=simple
+<pre><code class="bash">php bin/console muse init Asuka\\Flower sakura.sakuras -t=simple
 </code></pre>
 
 <p>If you forgot to run migration and seeder, you can use this command to run it after generated:</p>
@@ -276,7 +205,7 @@ this package to Windwalker main application.</p>
 
 <p>For example, if we create a package named <code>Flower</code>, we have to register <code>Flower\FlowerPackage</code> class to Windwalker.</p>
 
-<pre><code class="php">// src/Windwalker.php
+<pre><code class="php">// src/Windwalker/Windwalker.php
 
 use Flower\FlowerPackage;
 
@@ -335,7 +264,7 @@ flower:
 
 <p>If you want to add two MVC groups with singular and plural, use <code>add-subsystem</code> command. All parameters are same as <code>init</code>.</p>
 
-<p>Usage: <code>add-subsystem [&lt;namespace&gt;\]&lt;name&gt; &lt;item&gt;.&lt;list&gt; [-s|--seed] [-m|--migrate] [-t|--tmpl=default]</code></p>
+<p>Usage: <code>add-subsystem [&lt;namespace&gt;\\]&lt;name&gt; &lt;item&gt;.&lt;list&gt; [-s|--seed] [-m|--migrate] [-t|--tmpl=default]</code></p>
 
 <p>For example, add <code>rose.roses</code>.</p>
 
@@ -350,9 +279,9 @@ flower:
 
 <p>Just use <code>add-item</code> and <code>add-list</code> commands. All parameters are same as <code>init</code> and <code>add-subsystem</code>.</p>
 
-<p>Add item usage: <code>add-item [&lt;namespace&gt;\]&lt;name&gt; &lt;item&gt;.&lt;list&gt; [-t|--tmpl=default]</code></p>
+<p>Add item usage: <code>add-item [&lt;namespace&gt;\\]&lt;name&gt; &lt;item&gt;.&lt;list&gt; [-t|--tmpl=default]</code></p>
 
-<p>Add list usage: <code>add-list [&lt;namespace&gt;\]&lt;name&gt; &lt;item&gt;.&lt;list&gt; [-t|--tmpl=default]</code></p>
+<p>Add list usage: <code>add-list [&lt;namespace&gt;\\]&lt;name&gt; &lt;item&gt;.&lt;list&gt; [-t|--tmpl=default]</code></p>
 
 <blockquote>
   <p>You still must provides both item and list name for this two commands.</p>
@@ -372,7 +301,7 @@ Controller/Model/View that you can fill your own logic.</p>
 
 <p>Use <code>convert</code> command to convert a existing package to be template then your team will able to create your own templates.</p>
 
-<p>Usage: <code>convert [&lt;namespace&gt;\]&lt;name&gt; &lt;item&gt;.&lt;list&gt; [-t|--tmpl=default]</code></p>
+<p>Usage: <code>convert [&lt;namespace&gt;\\]&lt;name&gt; &lt;item&gt;.&lt;list&gt; [-t|--tmpl=default]</code></p>
 
 <blockquote>
   <h4>TODO:</h4>

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="../../media/images/favicon.ico" />
 
-        <title>Date Helper | Phoenix RAD for Windwalker</title>
+        <title>Form &amp; Edit | Phoenix RAD for Windwalker</title>
 
         <!-- Uikit core CSS -->
         <link href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.15.0/css/uikit.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="generator" content="The Time Machine">
 
-        <meta property="og:title" content="Date Helper | Phoenix RAD for Windwalker">
+        <meta property="og:title" content="Form &amp; Edit | Phoenix RAD for Windwalker">
         <meta property="og:site_name" content="Phoenix RAD for Windwalker">
 
         
@@ -77,7 +77,7 @@
     <section id="banner">
         <div class="banner-inner">
                 <div class="uk-container uk-container-center banner-inner-title">
-        <h1>Date Helper</h1>
+        <h1>Form &amp; Edit</h1>
     </div>
         </div>
     </section>
@@ -111,7 +111,7 @@
                     <li class="">
                 <a href="../../documentation/tut/grid.html">Prepare Grid View</a>
             </li>
-                    <li class="">
+                    <li class="uk-active">
                 <a href="../../documentation/tut/form.html">Form &amp; Edit</a>
             </li>
                     <li class="">
@@ -126,19 +126,226 @@
 
             <div class="uk-width-medium-3-4 uk-container-center">
                 <article class="article-content">
-                    <h1>Using DateHelper</h1>
+                    <h1>Category Edit Page</h1>
 
-<p>Use</p>
+<p>Click Any category item, you will see edit page with a form and inputs.</p>
 
-<pre><code class="php">$date = \Windwalker\Helper\DateHelper::getDate('now');
+<p>We must modify this form to fit <code>categories</code> table.</p>
+
+<p>Please open <code>src/Blog/Admin/Form/Category/EditDefinition.php</code> and change code to below.</p>
+
+<pre><code class="php">// src/Blog/Admin/Form/Category/EditDefinition.php
+
+namespace Blog\Admin\Form\Category;
+
+use Phoenix\Field\CalendarField;
+use Windwalker\Core\Language\Translator;
+use Windwalker\Form\Field\HiddenField;
+use Windwalker\Form\Field\RadioField;
+use Windwalker\Form\Field\TextField;
+use Windwalker\Form\FieldDefinitionInterface;
+use Windwalker\Form\Form;
+use Windwalker\Html\Option;
+
+/**
+ * The CategoryEditDefinition class.
+ *
+ * @since  {DEPLOY_VERSION}
+ */
+class EditDefinition implements FieldDefinitionInterface
+{
+    /**
+     * Define the form fields.
+     *
+     * @param Form $form The Windwalker form object.
+     *
+     * @return  void
+     */
+    public function define(Form $form)
+    {
+        // Basic fieldset
+        $form-&gt;wrap('basic', null, function(Form $form)
+        {
+            // ID
+            $form-&gt;add('id', new HiddenField);
+
+            // Title
+            $form-&gt;add('title', new TextField)
+                -&gt;label(Translator::translate('admin.category.field.title'))
+                -&gt;required(true);
+
+            // Alias
+            $form-&gt;add('alias', new TextField)
+                -&gt;label(Translator::translate('admin.category.field.alias'));
+        });
+
+        // Delete the Text Group...
+
+        // Created fieldset
+        $form-&gt;wrap('created', null, function(Form $form)
+        {
+            // No change...
+        });
+    }
+}
 </code></pre>
 
-<p>Same as</p>
+<h1>Article Edit Form</h1>
 
-<pre><code class="php">$dta = JFactory::getDate('now', JFactory::getConfig()-&gt;get('offset'));
+<p>Then modify the article form.</p>
+
+<p>Note we use <code>CategoryListField</code> for <code>category_id</code>.</p>
+
+<pre><code class="php">// src/Blog/Admin/Form/Article/EditDefinition.php
+
+namespace Blog\Admin\Form\Article;
+
+use Blog\Admin\Field\Category\CategoryListField;
+use Phoenix\Field\CalendarField;
+use Windwalker\Core\Language\Translator;
+use Windwalker\Form\Field\HiddenField;
+use Windwalker\Form\Field\RadioField;
+use Windwalker\Form\Field\TextareaField;
+use Windwalker\Form\Field\TextField;
+use Windwalker\Form\FieldDefinitionInterface;
+use Windwalker\Form\Form;
+use Windwalker\Html\Option;
+
+class EditDefinition implements FieldDefinitionInterface
+{
+    /**
+     * Define the form fields.
+     *
+     * @param Form $form The Windwalker form object.
+     *
+     * @return  void
+     */
+    public function define(Form $form)
+    {
+        // Basic fieldset
+        $form-&gt;wrap('basic', null, function(Form $form)
+        {
+            // ID
+            $form-&gt;add('id', new HiddenField);
+
+            // Title
+            $form-&gt;add('title', new TextField)
+                -&gt;label(Translator::translate('admin.article.field.title'))
+                -&gt;required(true);
+
+            // Alias
+            $form-&gt;add('alias', new TextField)
+                -&gt;label(Translator::translate('admin.article.field.alias'));
+
+            // Category
+            $form-&gt;add('category_id', new CategoryListField)
+                -&gt;label('Category')
+                -&gt;addOption(new Option('Uncategorised', ''));
+        });
+
+        // Text Fieldset
+        $form-&gt;wrap('text', null, function(Form $form)
+        {
+            // No change...
+        });
+
+        // Created fieldset
+        $form-&gt;wrap('created', null, function(Form $form)
+        {
+            // No change...
+        });
+    }
+}
 </code></pre>
 
-<p>To get the <code>JDate</code> object for local timezone.</p>
+<p>Then we can choose category in article edit page.</p>
+
+<p><img src="http://i.imgur.com/eCT61tS.jpg" alt="Imgur" /></p>
+
+<h1>Comment Form</h1>
+
+<p>Same as article and category, but we use <code>ArticleModalField</code> to select article.</p>
+
+<pre><code class="php">// src/Blog/Admin/Form/Comment/EditDefinition.php
+
+namespace Blog\Admin\Form\Comment;
+
+use Blog\Admin\Field\Article\ArticleModalField;
+use Phoenix\Field\CalendarField;
+use Windwalker\Core\Language\Translator;
+use Windwalker\Form\Field\EmailField;
+use Windwalker\Form\Field\HiddenField;
+use Windwalker\Form\Field\RadioField;
+use Windwalker\Form\Field\TextareaField;
+use Windwalker\Form\Field\TextField;
+use Windwalker\Form\FieldDefinitionInterface;
+use Windwalker\Form\Form;
+use Windwalker\Html\Option;
+
+class EditDefinition implements FieldDefinitionInterface
+{
+    /**
+     * Define the form fields.
+     *
+     * @param Form $form The Windwalker form object.
+     *
+     * @return  void
+     */
+    public function define(Form $form)
+    {
+        // Basic fieldset
+        $form-&gt;wrap('basic', null, function(Form $form)
+        {
+            // ID
+            $form-&gt;add('id', new HiddenField);
+
+            // Name
+            $form-&gt;add('name', new TextField)
+                -&gt;label('Name')
+                -&gt;required(true);
+
+            $form-&gt;add('email', new EmailField)
+                -&gt;label('Email')
+                -&gt;required(true);
+
+            // Article
+            $form-&gt;add('article_id', new ArticleModalField)
+                -&gt;label('Article');
+        });
+
+        // Text Fieldset
+        $form-&gt;wrap('text', null, function(Form $form)
+        {
+            // Introtext
+            $form-&gt;add('text', new TextareaField)
+                -&gt;label('Text')
+                -&gt;set('rows', 10);
+        });
+
+        // Created fieldset
+        $form-&gt;wrap('created', null, function(Form $form)
+        {
+            // State
+            $form-&gt;add('state', new RadioField)
+                -&gt;label(Translator::translate('admin.comment.field.state'))
+                -&gt;set('class', 'btn-group')
+                -&gt;set('default', 1)
+                -&gt;addOption(new Option(Translator::translate('phoenix.grid.state.published'), '1'))
+                -&gt;addOption(new Option(Translator::translate('phoenix.grid.state.unpublished'), '0'));
+
+            // Created
+            $form-&gt;add('created', new CalendarField)
+                -&gt;label(Translator::translate('admin.comment.field.created'));
+        });
+    }
+}
+</code></pre>
+
+<p>You will see a Model select field, if you click the <code>Select an Item</code> button, will open a modal for select article.</p>
+
+<p><img src="http://i.imgur.com/AvKB3xf.jpg" alt="Imgur" /></p>
+
+<p><img src="http://i.imgur.com/yOsuRgx.jpg" alt="Imgur" /></p>
 
                         <hr />
 
